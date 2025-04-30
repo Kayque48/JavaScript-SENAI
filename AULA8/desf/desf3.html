@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valores Impares</title>
+</head>
+<body>
+    <input type="text" id="matrizImpares" placeholder="Digite 16 números separados por vírgula (4x4)">
+    <button onclick = "contarImparesMatriz()">Contar Pares</button>
+    <p id="resultadoImparesMatriz"></p>
+
+    <script>
+        let matriz = [];
+        function contarImparesMatriz() {
+            const vetor = document.getElementById("matrizImpares").value.split(",").map(Number);
+            for (let i = 0; i < 4; i++) {
+                matriz[i] = vetor.slice(i*4, (i+1)*4);
+            }
+            let impares = 0;
+            for (let i = 0; i<4; i++) {
+                for (let j=0; j<4; j++){
+                    if (matriz[i][j] %2 !== 0){
+                        impares++;
+                    }
+                }
+            }
+            document.getElementById("resultadoImparesMatriz").innerHTML = "Impares: " + impares;
+        }
+    </script>
+</body>
+</html>

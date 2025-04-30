@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Moedas</title>
+</head>
+<body>
+    <label>Valor em Real(R$):</label>
+    <input type="number" id="moeda" value="5">
+    <br>
+    <label>Escolha a conversão:</label>
+    <input type="text" id="tipoConversao" value="dólar">
+    <br>
+    <button onclick="converter()">converter</button>
+    <p id="resultado"></p>
+
+    <script>
+        let valorFinal = 0;
+        
+    function converter() {
+        let conversor = document.getElementById("tipoConversao").value;
+        let moeda = document.getElementById("moeda").value;
+        switch(conversor){
+            case "dólar":
+                valorFinal = moeda / 5;
+                break;
+            case "euro":
+                valorFinal = moeda / 5.5;
+                break;
+                
+            default:
+                document.getElementById("resultado").innerHTML = `Opção inválida`
+        }
+        document.getElementById("resultado").innerHTML = `A conversão em ${conversor} é igual: <strong>${valorFinal.toFixed(2)}</strong>`
+    }
+
+    </script>
+
+</body>
+</html>

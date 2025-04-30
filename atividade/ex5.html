@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATIVIDADE 5 - ENCOMENDA DE PRODUTOS</title>
+</head>
+<body>
+    <h2>Informações clientes</h2>
+    <label>Nome: </label>
+    <input type="text" id="nome">
+    <label>CEP: </label>
+    <input type="text" id="cep">
+
+
+    <ol>
+            <li>Produto 1: Notebook - R$ 3.500,00</li>
+            <li>Produto 2: Smartphone - R$ 2.000,00</li>
+            <li>Produto 3: Fone de ouvido - R$ 150,00</li>
+            <li>Produto 4: Teclado mecânico - R$ 300,00</li>
+            <li>Produto 5: Monitor - R$ 1.200,00</li>
+    </ol>
+    <p id="resultado"></p>
+    <input type="number" id="produto">
+    <button onclick="encomendar()">ENCOMENDAR</button>
+
+    <script>
+        function encomendar() {
+            let nome = document.getElementById("nome");
+            let CEP = document.getElementById("cep");
+            let produto = []
+
+            let produtoId = document.getElementById("produto").value;
+            let produtos = [
+                { id: 1, nome: "Notebook", preco: 3500.00 },
+                { id: 2, nome: "Smartphone", preco: 2000.00 },
+                { id: 3, nome: "Fone de ouvido", preco: 150.00 },
+                { id: 4, nome: "Teclado mecânico", preco: 300.00 },
+                { id: 5, nome: "Monitor", preco: 1200.00 }
+            ];
+
+            let produtoSelecionado = produtos.find(p => p.id == produtoId);
+            let ress = document.getElementById("resultado");
+            if (produtoSelecionado) {
+                produto.push(produtoSelecionado);
+                ress.innerHTML =`<p>Encomenda realizada com sucesso!\nCliente: ${nome.value}\nCEP: ${CEP.value}\nProduto: ${produtoSelecionado.nome} - R$ ${produtoSelecionado.preco.toFixed(2)}</p>`;
+            } else {
+                ress.innerHTML = `<p>Produto inválido!</p>`
+            }
+        }
+    </script>
+</body>
+</html>

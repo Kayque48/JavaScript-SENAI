@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATIVIDADE 2 - MECÂNICA DO ZÉ</title>
+</head>
+<body>
+    <div class="menu">
+        <div>
+            <h2>Escolha seu serviço</h2>
+            <label>Seu nome:</label>
+            <input type="text" id="nome"> <!-- Adicionado o ID para capturar o valor -->
+            <ol>
+                <li>Troca de óleo</li>
+                <button onclick="trocaOleo()">Escolher</button> <!-- Corrigido para chamar a função correta -->
+                <li>Alinhamento e balanceamento</li>
+                <button onclick="alinhamento()">Escolher</button> <!-- Corrigido para chamar a função correta -->
+                <li>Revisão completa</li>
+                <button onclick="revisao()">Escolher</button> <!-- Corrigido para chamar a função correta -->
+            </ol>
+        </div>
+    </div>
+    <p id="resultado"></p>
+    <script src="ex2.js"></script>
+</body>
+</html>

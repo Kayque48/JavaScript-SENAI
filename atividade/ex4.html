@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATIVIDADE 4 - CALCULADORA DE IMC</title>
+</head>
+<body>
+    <div>
+    <label>Insira seu nome: </label>
+    <input type="text" id="name">
+</div>
+<div>
+    <label>Insira sua altura: </label>
+    <input type="text" id="altura">
+</div>
+<div>
+    <label>Insira seu peso: </label>
+    <input type="text" id="peso">
+</div>
+    <button onclick="IMC()">Calcular</button>
+    <p id="resultado"></p>
+
+    <script>
+       function IMC() {
+        let nome = document.getElementById("name");
+        let altura = parseFloat(document.getElementById("altura").value);
+        let peso = parseFloat(document.getElementById("peso").value);
+
+        let imc = peso / (altura*altura);
+
+        let ress = document.getElementById("resultado");
+
+        if (imc < 18.5) {
+            ress.innerHTML = `<p>${nome.value}, você está abaixo do peso: ${imc.toFixed(2)}</p>`;
+        } else if (imc >= 18.5 && imc <= 24.9) {
+            ress.innerHTML = `<p>${nome.value}, você está com peso normal: ${imc.toFixed(2)}</p>`;
+        } else if (imc >= 25 && imc <= 29.9) {
+            ress.innerHTML = `<p>${nome.value}, você está com sobrepeso: ${imc.toFixed(2)}</p>`;
+        } else {
+            ress.innerHTML = `<p>${nome.value}, você está com obesidade: ${imc.toFixed(2)}</p>`;
+        }
+        }
+    </script>
+</body>
+</html>
