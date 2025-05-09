@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividaed de signos</title>
+</head>
+<body>
+    <h1>Descubra seu signo</h1>
+    Digite seu mês entre 1 - 12: <input type="number" id="signo" min="1" max="12">
+    <button onclick="exibirsignos()"> Ver Signos</button>
+    <p id="resultado"></p>
+
+    <script>
+        function exibirsignos() {
+            let mes = parseInt(document.getElementById("signo").value);
+            let resultado;
+
+            switch(mes) {
+                case 1:
+                    resultado = "Capricórnio e Aquário";
+                    break;
+                case 2:
+                    resultado = "Aquário e Peixes";
+                    break;
+                case 3:
+                    resultado = "Peixes e Áries";
+                    break;
+                case 4:
+                    resultado = "Áries e Touro";
+                    break;
+                case 5:
+                    resultado = "Touro e Gêmeos";
+                    break;
+                case 6:
+                    resultado = "Gêmeos e Câncer";
+                    break;
+                case 7:
+                    resultado = "Câncer e Leão";
+                    break;
+                case 8:
+                    resultado = "Leão e Virgem";
+                    break;
+                case 9:
+                    resultado = "Virgem e Libra";
+                    break;
+                case 10:
+                    resultado = "Libra e Escorpião";
+                    break;
+                case 11:
+                    resultado = "Escorpião e Sagitário";
+                    break;
+                case 12:
+                    resultado = "Sagitário e Capricórnio";
+                    break;
+                default:
+                    resultado = "Mês inválido";
+            }
+            document.getElementById("resultado").innerHTML = `O mês selecionando foi ${mes} e o signo é ${resultado}`
+        }
+    </script>
+</body>
+</html>

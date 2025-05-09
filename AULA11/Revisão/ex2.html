@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATIVIDADE 2 - DISPOSITIVOS ANTIGOS</title>
+</head>
+<body>
+    <h1>Programa de Comentários</h1>
+    <label>Escolha seu dispositvo:</label>
+    <ol>
+        <li>DVD</li>
+        <li>Fita Cassete</li>
+        <li>CD</li>
+    </ol>
+    <input type="number" id="dispositivo" min="1" max="3">
+    <button onclick="comentario()">Cometário</button>
+    <p id="resultado"></p>
+
+    <script>
+        let dispositivoInput = document.getElementById("dispositivo");
+        let op = document.getElementById("dispositivo");
+
+        function comentario() {
+            switch(op) {
+                case 1:
+                    dispositivo = "Um dispositivo de DVD é um equipamento que serve para ler e, em alguns casos, gravar discos DVD, usados para armazenar vídeos, músicas e arquivos. Ele pode ser interno ou externo e também costuma ler CDs. Apesar de menos usado hoje, ainda é útil para acessar conteúdos antigos ou fazer backups."
+                    break
+                case 2:
+                    dispositivo = "A fita cassete é um dispositivo de armazenamento de áudio em formato analógico, muito popular entre as décadas de 1970 e 1990. Ela consiste em uma pequena caixa plástica com duas bobinas que enrolam uma fita magnética, onde o som é gravado e reproduzido por aparelhos como toca-fitas e gravadores. Apesar de ter caído em desuso com a chegada dos CDs e do áudio digital, ainda é lembrada por seu valor nostálgico e cultural."
+                    break;
+                    case 3: 
+                    dispositivo = "O CD, ou disco compacto, é um meio de armazenamento digital criado para guardar principalmente músicas, mas também pode conter dados, vídeos e outros arquivos. Ele é lido por um feixe de laser em dispositivos como tocadores de CD e computadores. Surgiu nos anos 1980 e foi muito popular nas décadas seguintes, sendo mais resistente e com melhor qualidade de som que a fita cassete. Hoje, seu uso diminuiu com a popularização de mídias digitais e serviços de streaming."
+                    break;
+                    default:
+            document.getElementById("resultado").innerHTML = dispositivo;
+            }
+            document.getElementById("resultado").innerHTML = `${}`
+        }
+    </script>
+
+
+
+</body>
+</html>
