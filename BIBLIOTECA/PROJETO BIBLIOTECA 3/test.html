@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="test.css">
+    <title>Biblioteca Versão 2</title>
+</head>
+<body>
+    <div class="container">
+        <h1>BIBLIOTECA SENAI - EDUCAÇÃO PARA A VIDA!</h1>
+        <div class="menu">
+            <button onclick="mostrarSecao('cadastro')">
+                <i class="fas fa-book-medical icon"></i>Cadastrar Livro
+              </button>
+              <button onclick="mostrarSecao('consulta')">
+                <i class="fas fa-search icon"></i>Consultar Livros
+              </button>
+              <button onclick="mostrarSecao('alterar')">
+                <i class="fas fa-edit icon"></i>Alterar Livro
+              </button>
+              <button onclick="mostrarSecao('emprestimo')">
+                <i class="fas fa-book-reader icon"></i>Empréstimo de Livros
+              </button>
+              <button onclick="mostrarSecao('venda')">
+                <i class="fas fa-shopping-cart icon"></i> Venda de Livros
+              </button>
+    
+              <button onclick="gerarRelatorioVendas()">
+                <i class="fa-solid fa-flag"></i> Relatório de Vendas
+              </button>
+              
+    
+    </div>
+    
+    
+              <!-- Seção de Cadastro -->
+              <div id="cadastro" class="hidden">
+                <h2>Cadastrar Livro</h2>
+                <div class="form-group">
+                  <label for="titulo">Título:</label>
+                  <input type="text" id="titulo" placeholder="Digite o título do livro">
+                </div>
+                <div class="form-group">
+                  <label for="autor">Autor:</label>
+                  <input type="text" id="autor" placeholder="Digite o autor do livro">
+                </div>
+                <div class="form-group">
+                  <label for="ano">Ano:</label>
+                  <input type="number" id="ano" placeholder="Digite o ano de publicação">
+                </div>
+    
+                
+                <button onclick="adicionarLivro()">Adicionar Livro</button>
+              </div>
+    
+              <!-- Seção de Consulta -->
+              <div id="consulta" class="hidden">
+                <h2>Consultar Livros</h2>
+                <input type="text" id="busca" placeholder="Buscar por título"
+                oninput="buscarLivro()">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Título</th>
+                      <th>Autor</th>
+                      <th>Ano</th>
+                    </tr>
+                  </thead>
+                  <tbody id="lista-livros">
+                    <!-- Livros serão exibidos aqui -->
+                  </tbody>
+                </table>
+              </div>
+    
+                    <!-- Seção de Alteração -->
+                    <div id="alterar" class="hidden">
+                      <h2>Alterar Livro</h2>
+                      <input type="text" id="busca-alterar" placeholder="Buscar por título" oninput="buscarLivroParaAlterar()">
+                      <div id="form-alterar" class="hidden">
+                        <div class="form-group">
+                          <label for="novo-titulo">Novo Título:</label>
+                          <input type="text" id="novo-titulo" placeholder="Digite o novo título">
+                        </div>
+                        <div class="form-group">
+                          <label for="novo-autor">Novo Autor:</label>
+                          <input type="text" id="novo-autor" placeholder="Digite o novo autor">
+                        </div>
+                        <div class="form-group">
+                          <label for="novo-ano">Novo Ano:</label>
+                          <input type="number" id="novo-ano" placeholder="Digite o novo ano">
+                        </div>
+                        <button onclick="alterarLivro()">Salvar Alterações</button>
+                      </div>
+                    </div>
+                    <!-- Seção de Empréstimo -->
+                <div id="emprestimo" class="hidden">
+                  <h2>Empréstimo de Livros</h2>
+                  <div class="form-group">
+                    <label for="emprestimo-titulo">Título do Livro:</label>
+                    <input type="text" id="emprestimo-titulo" placeholder="Digite o título do livro">
+                  </div>
+                  <div class="form-group">
+                    <label for="emprestimo-nome">Nome do Usuário:</label>
+                    <input type="text" id="emprestimo-nome" placeholder="Digite o nome do usuário">
+                  </div>
+                  <button onclick="realizarEmprestimo()">Realizar Empréstimo</button>
+                  <h3>Livros Emprestados</h3>
+                  <ul id="lista-emprestimos">
+                    <!-- Lista de empréstimos será exibida aqui -->
+                  </ul>
+                </div> 
+                
+                <!-- Seção de Venda -->
+                <div id="venda" class="hidden">
+                  <h2>Venda de Livros</h2>
+                  <div class="form-group">
+                    <label for="venda-titulo">Título do Livro:</label>
+                    <input type="text" id="venda-titulo" placeholder="Digite o título do livro">
+                  </div>
+                  <div class="form-group">
+                    <label for="venda-preco">Preço:</label>
+                    <input type="number" id="venda-preco" placeholder="Digite o preço do livro">
+                  </div>
+                  <div class="form-group">
+                    <label for="venda-comprador">Nome do Comprador:</label>
+                    <input type="text" id="venda-comprador" placeholder="Digite o nome do comprador">
+                  </div>
+                  <button onclick="registrarVenda()">Registrar Venda</button>
+                  <h3>Livros Vendidos</h3>
+                  <ul id="lista-vendas">
+                    <!-- Lista de vendas será exibida aqui -->
+                  </ul>
+                </div>
+                
+                <!-- Área para exibir o relatório -->
+               <div id="relatorio-vendas" class="hidden">
+                <h3>Relatório de Vendas</h3>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Título</th>
+                      <th>Preço</th>
+                      <th>Comprador</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tabela-relatorio-vendas">
+                    <!-- Relatório será exibido aqui -->
+                  </tbody>
+                </table>
+              </div>
+              </div>   
+            </div>
+    
+<script>
+let biblioteca = [];
+let emprestimos = [];
+let vendas = []; // Array para armazenar as vendas
+
+function mostrarSecao(secao) {
+    document.getElementById("cadastro").classList.add("hidden");
+    document.getElementById("consulta").classList.add("hidden");
+    document.getElementById("alterar").classList.add("hidden");
+    document.getElementById("emprestimo").classList.add("hidden");
+    document.getElementById("venda").classList.add("hidden");
+    document.getElementById("relatorio-vendas").classList.add("hidden");
+
+    document.getElementById(secao).classList.remove("hidden");
+}
+
+function registrarVenda() {
+    const titulo = document.getElementById("venda-titulo").value;
+    const preco = document.getElementById("venda-preco").value;
+    const comprador = document.getElementById("venda-comprador").value;
+
+    if (titulo && preco && comprador) {
+        const listaVendas = document.getElementById("lista-vendas");
+        const item = document.createElement("li");
+        item.textContent = `Título: ${titulo}, Preço: R$${preco}, Comprador: ${comprador}`;
+        listaVendas.appendChild(item);
+
+        // Adicionar venda ao array de vendas
+        vendas.push({ titulo, preco, comprador });
+
+        // Limpar os campos
+        document.getElementById("venda-titulo").value = "";
+        document.getElementById("venda-preco").value = "";
+        document.getElementById("venda-comprador").value = "";
+    } else {
+        alert("Por favor, preencha todos os campos!");
+    }
+}
+
+function gerarRelatorioVendas() {
+    const tabelaRelatorio = document.getElementById("tabela-relatorio-vendas");
+    tabelaRelatorio.innerHTML = ""; // Limpar tabela
+
+    if (vendas.length === 0) {
+        alert("Nenhuma venda registrada.");
+        return;
+    }
+
+    vendas.forEach((venda) => {
+        const linha = document.createElement("tr");
+        linha.innerHTML = `
+            <td>${venda.titulo}</td>
+            <td>R$${venda.preco}</td>
+            <td>${venda.comprador}</td>
+        `;
+        tabelaRelatorio.appendChild(linha);
+    });
+}
+</script>
+
+</body>
+</html>
