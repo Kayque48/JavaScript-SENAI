@@ -1,0 +1,111 @@
+/* Estilo geral */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f1e4; /* Fundo bege claro, remetendo a massa de pizza */
+    color: #333; /* Texto em cinza escuro */
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff; /* Fundo branco para o container */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+h1 {
+    text-align: center;
+    color: #d35400; /* Laranja queimado, remetendo ao forno de pizza */
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+/* Estilo do menu */
+#menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#menu button {
+    background-color: #e74c3c; /* Vermelho tomate */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#menu button:hover {
+    background-color: #c0392b; /* Vermelho mais escuro ao passar o mouse */
+}
+
+#menu button i {
+    margin-right: 10px;
+}
+
+/* Estilo para seções */
+section {
+    display: none;
+    margin-top: 20px;
+}
+
+section.active {
+    display: block;
+}
+
+/* Estilo para tabelas (ex: cardápio ou pedidos) */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #e74c3c; /* Vermelho tomate */
+    color: #fff;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+table tr:hover {
+    background-color: #f5d6d6; /* Fundo claro ao passar o mouse */
+}
+
+/* Estilo para inputs e formulários */
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+button[type="submit"] {
+    background-color: #27ae60; /* Verde para botões de ação */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #1e8449; /* Verde mais escuro ao passar o mouse */
+}
