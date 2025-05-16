@@ -109,3 +109,7 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: #1e8449; /* Verde mais escuro ao passar o mouse */
 }
+
+.hidden {
+    display: none;
+}
