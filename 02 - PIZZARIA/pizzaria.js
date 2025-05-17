@@ -15,24 +15,24 @@ function mostrarSecao(secao) {
 function cadastrarPizza() {
 
     //Buscar Valores definidos pelo usuário
-    const nome = document.getElementById("name").Value;
-    const tipo = document.getElementById("type").Value;
-    const tamanho = document.getElementById("size").Value;
-    const descricao = document.getElementById("description").Value;
-    const preco = parseFloat(document.getElementById("price").Value);
+    const nome = document.getElementById("name").value;
+    const tipo = document.getElementById("type").value;
+    const tamanho = document.getElementById("size").value;
+    const descricao = document.getElementById("description").value;
+    const preco = parseFloat(document.getElementById("price").value);
 
     //operação para vereficar se todos os campos estão preenchidos
-    if (nome != "" || tipo != "" || tamanho != "" || descricao != "" || preco != "") {
+    if (nome != "" && tipo != "" && tamanho != "" && descricao != "" && !isNaN(preco)) {
         //empurrar as constantes dentro do array Pizzaria
-        pizzaria.push({nome, tipo, tamanho, preco})
-        document.getElementById("result").innerHTML = `Pizza  adicionada com sucesso!!!`
+        pizzaria.push({nome, tipo, tamanho, descricao, preco})
+        document.getElementById("result").innerHTML = `Pizza adicionada com sucesso!!!`
 
         //limpar os termos
-        document.getElementById("name").Value = "";
-        document.getElementById("type").Value = "";
-        document.getElementById("size").Value = "";
-        document.getElementById("description").Value = "";
-        document.getElementById("price").Value = "";
+        document.getElementById("name").value = "";
+        document.getElementById("type").value = "";
+        document.getElementById("size").value = "";
+        document.getElementById("description").value = "";
+        document.getElementById("price").value = "";
         atualizarLista()
     } else {
         document.getElementById("result").innerHTML = "Falha em adicionar pizza! Preencha todos os campos antes."
@@ -40,14 +40,14 @@ function cadastrarPizza() {
 }
 
 function buscarPizza() {
-    const busca = document.getElementById("busca").Value;
-    const resultados = biblioteca.filter((pizza) => pizza.nome.includes(busca));
-    (resultados);
+    const busca = document.getElementById("busca").value.toLowerCase();
+    const resultados = pizzaria.filter((pizza) => pizza.nome.toLowerCase().includes(busca.toLowerCase()));
+    atualizarLista(resultados);
 }
 
 function atualizarLista(lista = pizzaria) {
     // define tabela e insere os dados
-    const tabela = document.getElementById("lista-pizza");
+    const tabela = document.getElementById("lista-pizzas");
     tabela.innerHTML = "";
 
     lista.forEach((pizza) => {
