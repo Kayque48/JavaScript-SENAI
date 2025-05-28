@@ -1,4 +1,5 @@
 pizzaria = []
+cliente = []
 
 // função para selecionar a operação deseja pelo usuário
 function mostrarSecao(secao) {
@@ -6,6 +7,8 @@ function mostrarSecao(secao) {
     //Esconde todas as seções
     document.getElementById("cadastroPizza").classList.add("hidden");
     document.getElementById("cardapio").classList.add("hidden");
+    document.getElementById("loginCadastro").classList.add("hidden");
+    document.getElementById("login").classList.add("hidden");
 
     //Exibi apenas a seção que foi selecionada
     document.getElementById(secao).classList.remove("hidden")
@@ -43,6 +46,29 @@ function buscarPizza() {
     const busca = document.getElementById("busca").value.toLowerCase();
     const resultados = pizzaria.filter((pizza) => pizza.nome.toLowerCase().includes(busca.toLowerCase()));
     atualizarLista(resultados);
+}
+
+// função para logar usuário/cliente
+function logar() {
+
+    //Buscar valores definidos pelo usuário
+    const user = document.getElementById("user").value;
+    const pass = document.getElementById("password").value;
+
+    //Conferir se todos os campos foram preenchidos
+    if (user != "" && pass != "") {
+        //Conferir se o usuário e a senha está correto
+        if(user == "KayqueAdm" && pass == "HanhodeAyds") {
+            document.getElementById("resultadoLogin").innerHTML = `<p style="color: green;">Login realizado com <strong>sucesso!</strong><br>
+            Bem vindo ${user}</p>`;
+        } else {
+            document.getElementById("resultadoLogin").innerHTML = `<p style="color: red;">Usuário ou senha <strong>incorreta!</strong><p>`
+        }
+    } else {
+        document.getElementById("resultadoLogin").innerHTML = `<p>Preencha todos os campos!!!<p>`
+    }
+
+
 }
 
 function atualizarLista(lista = pizzaria) {

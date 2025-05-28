@@ -17,20 +17,20 @@
             <button onclick="mostrarSecao('cardapio')">
                 <i class=""></i>Cardápio
             </button>
-<!-- 
-            <button onclick="mostrarSecao('atualizarCardapio')">
-                <i class=""></i>Atualizar Cardápio
+
+            <button onclick="mostrarSecao('loginCadastro')">
+                <i class=""></i>Login/Cadastro
             </button>
             
-            <button onclick="mostrarSecao('adicionarPedido')">
+            <!-- <button onclick="mostrarSecao('adicionarPedido')">
                 <i class=""></i>Adicionar Pedido
             </button>
 
             <button onclick="mostrarSecao('pedidosAbertos')">
                 <i class=""></i>Pedidos em abertos
             </button>
-        </div>
-    </div> -->
+        </div> -->
+    </div>
 
     <!-- Seção de Cadastro de Pizza -->
      <div id="cadastroPizza" class="hidden">
@@ -102,6 +102,25 @@
             </tbody>
         </table>
      </div>
+
+     <!-- Seção de Login e Cadastro -->
+      <div id="loginCadastro" class="hidden">
+        <h2>Cadastrar / Logar</h2>
+        Qual ação você Gostaria de Realizar:
+        <button onclick="mostrarSecao('cadastro')">Cadastrar novo conta</button>
+        <button onclick="mostrarSecao('login')">Logar em uma conta</button>
+      </div>
+
+      <!-- Seção de Login -->
+       <div id="login" class="hidden">
+        <h2>Você está na seção de login</h2>
+        <label>Qual seu Usuário: </label>
+        <input type="text" id="user" placeholder="nome, emial, cpf">
+        <label>Senha: </label>
+        <input type="password" id="password">
+        <button type="submit" onclick="logar()">Logar</button>
+        <p id="resultadoLogin"></p>
+       </div>
 
      <!-- Meu Script -->
     <script src="pizzaria.js"></script>
