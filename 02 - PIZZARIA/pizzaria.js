@@ -1,5 +1,5 @@
 pizzaria = []
-cliente = []
+PizzaParaAlterar = null;
 
 // função para selecionar a operação deseja pelo usuário
 function mostrarSecao(secao) {
@@ -7,8 +7,8 @@ function mostrarSecao(secao) {
     //Esconde todas as seções
     document.getElementById("cadastroPizza").classList.add("hidden");
     document.getElementById("cardapio").classList.add("hidden");
-    document.getElementById("loginCadastro").classList.add("hidden");
     document.getElementById("login").classList.add("hidden");
+    document.getElementById("alterar").classList.add("hidden");
 
     //Exibi apenas a seção que foi selecionada
     document.getElementById(secao).classList.remove("hidden")
@@ -46,6 +46,49 @@ function buscarPizza() {
     const busca = document.getElementById("busca").value.toLowerCase();
     const resultados = pizzaria.filter((pizza) => pizza.nome.toLowerCase().includes(busca.toLowerCase()));
     atualizarLista(resultados);
+}
+
+function buscarPizzaAlteracao() {
+    const buscar = document.getElementById("buscar-alterar").value.toLowerCase();
+
+    PizzaParaAlterar = pizzaria.find((pizza) => 
+        pizza.nome.toLowerCase().includes(buscar)
+    );
+
+    if (pizzaParaAlterar) {
+    document.getElementById("form-alterar").classList.remove("hidden");
+    document.getElementById("new-name").value = pizzaParaAlterar.nome;
+    document.getElementById("new-type").value = pizzaParaAlterar.tipo;
+    document.getElementById("new-size").value = livroParaAlterar.tamanho;
+    document.getElementById("new-description").value = pizzaParaAlterar.descricao;
+    document.getElementById("new-price").value = PizzaParaAlterar.preco;
+  } else {
+    alert("Livro não encontrado.");
+  }
+}
+
+function alterarPizza() {
+  if (pizzaParaAlterar) {
+    const novoNome = document.getElementById("new-name").value;
+    const novoTipo = document.getElementById("new-type").value;
+    const novoTamanho = document.getElementById("new-size").value;
+    const novaDescricao = document.getElementById("new-description").value;
+    const novoPreco = parseFloat(document.getElementById("new-price").value);
+
+    if (novoNome && novoTipo && novoTamanho && novaDescricao && novoPreco) {
+      pizzaParaAlterar.nome = novoNome;
+      pizzaParaAlterar.tipo = novoTipo;
+      pizzaParaAlterar.tamanho = novoTamanho;
+      pizzaParaAlterar.descricao = novaDescricao;
+      pizzaParaAlterar.preco = novoPreco;
+
+      atualizarLista();
+      alert("Pizza alterado com sucesso!");
+      document.getElementById("form-alterar").classList.add("hidden");
+    } else {
+      alert("Por favor, preencha todos os campos.");
+    }
+  }
 }
 
 // função para logar usuário/cliente
