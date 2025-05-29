@@ -1,5 +1,4 @@
 pizzaria = []
-cliente = []
 
 // função para selecionar a operação deseja pelo usuário
 function mostrarSecao(secao) {
