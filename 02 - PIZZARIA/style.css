@@ -1,171 +1,172 @@
-/* Tema Pizzaria - Roxo com Cores Clássicas */
-
-/* Estilo geral */
 body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: url('wallpaper-pizza.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color: #2d133b;
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
+    font-family: 'Ubuntu', Verdana, Geneva, Tahoma, sans-serif;
+    margin: 20px;
+    background-color: #f9f9f9;
+    color: #333;
+
 }
 
-/* Container principal */
-#container {
-    max-width: 850px;
-    margin: 32px auto;
-    padding: 32px 28px;
-    background: rgba(255,255,255,0.97);
-    border-radius: 18px;
-    box-shadow: 0 8px 32px rgba(80, 0, 120, 0.13), 0 1.5px 8px rgba(200,0,0,0.10);
-    border: 2px solid #e63946;
+.container {
+    max-width: 1200px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Título */
-h1 {
+h1,
+h2 {
     text-align: center;
-    color: #e63946;
-    font-size: 2.8em;
-    letter-spacing: 2px;
-    margin-bottom: 28px;
-    text-shadow: 0 2px 8px #f1c40f;
+    color: #444;
 }
 
-/* Menu lateral ou superior */
-#menu {
+.menu {
     display: flex;
-    flex-direction: column;
-    gap: 14px;
-    margin-bottom: 18px;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
-#menu button {
-    background: linear-gradient(90deg, #e63946 0%, #f1c40f 100%);
-    color: #fff;
-    border: none;
-    padding: 13px 24px;
-    font-size: 1.08em;
-    border-radius: 7px;
+.menu button {
+    padding: 10px 20px;
+    margin: 0 10px;
     cursor: pointer;
-    font-weight: 500;
-    box-shadow: 0 2px 8px rgba(230,57,70,0.10);
-    transition: background 0.3s, transform 0.2s;
-    display: flex;
-    align-items: center;
+    border: none;
+    border-radius: 5px;
+    background-color: red;
+    color: white;
+    font-size: 20px;
+    transition: background-color 0.3s;
+    font-family: 'Ubuntu', Verdana, Geneva, Tahoma, sans-serif;
 }
 
-#menu button:hover {
-    background: linear-gradient(90deg, #f1c40f 0%, #e63946 100%);
-    transform: translateY(-2px) scale(1.03);
-    box-shadow: 0 4px 16px rgba(230,57,70,0.13);
+.menu button:hover {
+    background-color: red;
 }
 
-#menu button i {
-    margin-right: 12px;
-    font-size: 1.2em;
+.form-group {
+    margin-bottom: 15px;
 }
 
-/* Seções */
-section {
-    display: none;
-    margin-top: 26px;
-    animation: fadeIn 0.5s;
-}
-
-section.active {
+label {
     display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-family: 'Ubuntu', Verdana, Geneva, Tahoma, sans-serif;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(16px);}
-    to { opacity: 1; transform: translateY(0);}
+input,
+button {
+    width: auto;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: 'Ubuntu', Verdana, Geneva, Tahoma, sans-serif;
 }
 
-/* Tabelas */
+button {
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: 'Ubuntu', Verdana, Geneva, Tahoma, sans-serif;
+}
+
+button:hover {
+    background-color: red;
+}
+
 table {
+
     width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    margin-top: 22px;
-    background: #fffbe6;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(230,57,70,0.07);
+    border-collapse: collapse;
+    margin-top: 20px;
+    text-align: center;
+
 }
 
-table th, table td {
-    border: 1px solid #f1c40f;
-    padding: 12px 10px;
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
     text-align: left;
 }
 
-table th {
-    background: linear-gradient(90deg, #e63946 0%, #f1c40f 100%);
-    color: #fff;
-    font-weight: 600;
-    letter-spacing: 1px;
+th {
+    background-color: #007bff;
+    color: white;
 }
 
-table tr:nth-child(even) {
-    background-color: #ffe5b4;
-}
-
-table tr:hover {
-    background-color: #f1c40f22;
-    transition: background 0.2s;
-}
-
-/* Inputs e formulários */
-input, select, textarea {
-    width: 100%;
-    padding: 12px;
-    margin: 12px 0;
-    border: 1.5px solid #e63946;
-    border-radius: 6px;
-    font-size: 1em;
-    background: #fffbe6;
-    color: #2d133b;
-    transition: border 0.2s;
-}
-
-input:focus, select:focus, textarea:focus {
-    border-color: #f1c40f;
-    outline: none;
-    background: #ffe5b4;
-}
-
-/* Botão de submit */
-button[type="submit"] {
-    background: linear-gradient(90deg, #f1c40f 0%, #e63946 100%);
-    color: #fff;
-    border: none;
-    padding: 12px 28px;
-    font-size: 1.08em;
-    border-radius: 7px;
-    cursor: pointer;
-    font-weight: 600;
-    box-shadow: 0 2px 8px rgba(230,57,70,0.10);
-    transition: background 0.3s, transform 0.2s;
-}
-
-button[type="submit"]:hover {
-    background: linear-gradient(90deg, #e63946 0%, #f1c40f 100%);
-    transform: translateY(-2px) scale(1.04);
-    box-shadow: 0 4px 16px rgba(230,57,70,0.13);
-}
-
-/* Esconder elementos */
 .hidden {
-    display: none !important;
+    display: none;
 }
 
-/* Scrollbar customizada */
-::-webkit-scrollbar {
-    width: 10px;
-    background: #ffe5b4;
+.icon {
+    margin-right: 5px;
 }
-::-webkit-scrollbar-thumb {
-    background: #e63946;
-    border-radius: 6px;
+
+#login {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    /* Fundo branco com transparência */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Sombra leve */
+    text-align: center;
+}
+
+#login h1,
+#login h2 {
+    margin-bottom: 20px;
+}
+
+#login input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid #e67e22;
+    /* Laranja queijo */
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #fff8e1;
+    /* Tom de massa de pizza */
+    color: #333;
+    text-align: center;
+}
+
+#login button {
+    background-color: #27ae60;
+    /* Verde manjericão */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#login button:hover {
+    background-color: #1e8449;
+    /* Verde mais escuro */
+}
+
+footer {
+    width: 100%;
+    text-align: center;
+    margin-top: 40px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: transparent;
+}
+
+.logo-senai {
+    width: 180px;
+    height: auto;
+    margin-bottom: 10px;
 }
