@@ -1,5 +1,5 @@
-pizzaria = []
-PizzaParaAlterar = null;
+let pizzaria = [];
+let pizzaParaAlterar = null;
 
 // função para selecionar a operação deseja pelo usuário
 function mostrarSecao(secao) {
@@ -51,20 +51,20 @@ function buscarPizza() {
 function buscarPizzaAlteracao() {
     const buscar = document.getElementById("buscar-alterar").value.toLowerCase();
 
-    PizzaParaAlterar = pizzaria.find((pizza) => 
+    pizzaParaAlterar = pizzaria.find((pizza) => 
         pizza.nome.toLowerCase().includes(buscar)
     );
 
     if (pizzaParaAlterar) {
-    document.getElementById("form-alterar").classList.remove("hidden");
-    document.getElementById("new-name").value = pizzaParaAlterar.nome;
-    document.getElementById("new-type").value = pizzaParaAlterar.tipo;
-    document.getElementById("new-size").value = livroParaAlterar.tamanho;
-    document.getElementById("new-description").value = pizzaParaAlterar.descricao;
-    document.getElementById("new-price").value = PizzaParaAlterar.preco;
-  } else {
-    alert("Livro não encontrado.");
-  }
+        document.getElementById("form-alterar").classList.remove("hidden");
+        document.getElementById("new-name").value = pizzaParaAlterar.nome;
+        document.getElementById("new-type").value = pizzaParaAlterar.tipo;
+        document.getElementById("new-size").value = pizzaParaAlterar.tamanho;
+        document.getElementById("new-description").value = pizzaParaAlterar.descricao;
+        document.getElementById("new-price").value = pizzaParaAlterar.preco;
+    } else {
+        alert("Pizza não encontrada.");
+    }
 }
 
 function alterarPizza() {
