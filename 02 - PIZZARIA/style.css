@@ -1,115 +1,171 @@
+/* Tema Pizzaria - Roxo com Cores Clássicas */
+
 /* Estilo geral */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f1e4; /* Fundo bege claro, remetendo a massa de pizza */
-    color: #333; /* Texto em cinza escuro */
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: url('wallpaper-pizza.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #2d133b;
     margin: 0;
     padding: 0;
+    min-height: 100vh;
 }
 
+/* Container principal */
 #container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff; /* Fundo branco para o container */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    max-width: 850px;
+    margin: 32px auto;
+    padding: 32px 28px;
+    background: rgba(255,255,255,0.97);
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(80, 0, 120, 0.13), 0 1.5px 8px rgba(200,0,0,0.10);
+    border: 2px solid #e63946;
 }
 
+/* Título */
 h1 {
     text-align: center;
-    color: #d35400; /* Laranja queimado, remetendo ao forno de pizza */
-    font-size: 2.5em;
-    margin-bottom: 20px;
+    color: #e63946;
+    font-size: 2.8em;
+    letter-spacing: 2px;
+    margin-bottom: 28px;
+    text-shadow: 0 2px 8px #f1c40f;
 }
 
-/* Estilo do menu */
+/* Menu lateral ou superior */
 #menu {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 14px;
+    margin-bottom: 18px;
 }
 
 #menu button {
-    background-color: #e74c3c; /* Vermelho tomate */
+    background: linear-gradient(90deg, #e63946 0%, #f1c40f 100%);
     color: #fff;
     border: none;
-    padding: 10px 20px;
-    font-size: 1em;
-    border-radius: 5px;
+    padding: 13px 24px;
+    font-size: 1.08em;
+    border-radius: 7px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(230,57,70,0.10);
+    transition: background 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
 }
 
 #menu button:hover {
-    background-color: #c0392b; /* Vermelho mais escuro ao passar o mouse */
+    background: linear-gradient(90deg, #f1c40f 0%, #e63946 100%);
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 4px 16px rgba(230,57,70,0.13);
 }
 
 #menu button i {
-    margin-right: 10px;
+    margin-right: 12px;
+    font-size: 1.2em;
 }
 
-/* Estilo para seções */
+/* Seções */
 section {
     display: none;
-    margin-top: 20px;
+    margin-top: 26px;
+    animation: fadeIn 0.5s;
 }
 
 section.active {
     display: block;
 }
 
-/* Estilo para tabelas (ex: cardápio ou pedidos) */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(16px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
+/* Tabelas */
 table {
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 22px;
+    background: #fffbe6;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(230,57,70,0.07);
 }
 
 table th, table td {
-    border: 1px solid #ddd;
-    padding: 10px;
+    border: 1px solid #f1c40f;
+    padding: 12px 10px;
     text-align: left;
 }
 
 table th {
-    background-color: #e74c3c; /* Vermelho tomate */
+    background: linear-gradient(90deg, #e63946 0%, #f1c40f 100%);
     color: #fff;
+    font-weight: 600;
+    letter-spacing: 1px;
 }
 
 table tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #ffe5b4;
 }
 
 table tr:hover {
-    background-color: #f5d6d6; /* Fundo claro ao passar o mouse */
+    background-color: #f1c40f22;
+    transition: background 0.2s;
 }
 
-/* Estilo para inputs e formulários */
+/* Inputs e formulários */
 input, select, textarea {
     width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    padding: 12px;
+    margin: 12px 0;
+    border: 1.5px solid #e63946;
+    border-radius: 6px;
     font-size: 1em;
+    background: #fffbe6;
+    color: #2d133b;
+    transition: border 0.2s;
 }
 
+input:focus, select:focus, textarea:focus {
+    border-color: #f1c40f;
+    outline: none;
+    background: #ffe5b4;
+}
+
+/* Botão de submit */
 button[type="submit"] {
-    background-color: #27ae60; /* Verde para botões de ação */
+    background: linear-gradient(90deg, #f1c40f 0%, #e63946 100%);
     color: #fff;
     border: none;
-    padding: 10px 20px;
-    font-size: 1em;
-    border-radius: 5px;
+    padding: 12px 28px;
+    font-size: 1.08em;
+    border-radius: 7px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(230,57,70,0.10);
+    transition: background 0.3s, transform 0.2s;
 }
 
 button[type="submit"]:hover {
-    background-color: #1e8449; /* Verde mais escuro ao passar o mouse */
+    background: linear-gradient(90deg, #e63946 0%, #f1c40f 100%);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 4px 16px rgba(230,57,70,0.13);
 }
 
+/* Esconder elementos */
 .hidden {
-    display: none;
+    display: none !important;
+}
+
+/* Scrollbar customizada */
+::-webkit-scrollbar {
+    width: 10px;
+    background: #ffe5b4;
+}
+::-webkit-scrollbar-thumb {
+    background: #e63946;
+    border-radius: 6px;
 }

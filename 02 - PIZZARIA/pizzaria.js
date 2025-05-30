@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 let pizzaria = [];
 let pizzaParaAlterar = null;
+=======
+pizzaria = []
+>>>>>>> main
 
 // função para selecionar a operação deseja pelo usuário
 function mostrarSecao(secao) {
