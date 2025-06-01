@@ -1,9 +1,15 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Ubuntu', Verdana, Geneva, Tahoma, sans-serif;
-    margin: 20px;
-    background-color: #f9f9f9;
+    background: linear-gradient(120deg, #ffe5b4 0%, #ffb347 100%);
     color: #333;
-
+    min-height: 100vh;
 }
 
 .container {
@@ -15,16 +21,44 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-h1,
+#container {
+    max-width: 900px;
+    margin: 40px auto 0 auto;
+    background: rgba(255,255,255,0.97);
+    padding: 32px 32px 24px 32px;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+}
+
+h1 {
+    text-align: center;
+    color: #d7263d;
+    font-size: 2.6rem;
+    margin-bottom: 18px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
 h2 {
     text-align: center;
-    color: #444;
+    color: #388e3c;
+    font-size: 1.7rem;
+    margin-bottom: 18px;
+    font-weight: 600;
 }
 
 .menu {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
+}
+
+#menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 32px;
 }
 
 .menu button {
@@ -40,8 +74,70 @@ h2 {
     font-family: 'Ubuntu', Verdana, Geneva, Tahoma, sans-serif;
 }
 
+#menu button {
+    padding: 12px 28px;
+    border: none;
+    border-radius: 7px;
+    background: linear-gradient(90deg, #d7263d 60%, #ff8800 100%);
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(215,38,61,0.08);
+    transition: background 0.2s, transform 0.2s;
+    outline: none;
+    letter-spacing: 1px;
+}
+
 .menu button:hover {
     background-color: red;
+}
+
+#menu button:hover {
+    background: linear-gradient(90deg, #ff8800 60%, #d7263d 100%);
+    transform: translateY(-2px) scale(1.04);
+}
+
+#menu button,
+button {
+    background: #e6f9e0;
+    color: #226644;
+    border: none;
+    border-radius: 7px;
+    padding: 12px 28px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(34,102,68,0.06);
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+    outline: none;
+    letter-spacing: 1px;
+}
+
+#menu button:hover,
+button:hover {
+    background: #ffe5b4;
+    color: #388e3c;
+    transform: translateY(-2px) scale(1.04);
+}
+
+#login button,
+#checkout button {
+    background: #b7eac5;
+    color: #226644;
+    font-weight: 700;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 22px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+#login button:hover,
+#checkout button:hover {
+    background: #ffe5b4;
+    color: #d7263d;
 }
 
 .form-group {
@@ -55,6 +151,14 @@ label {
     font-family: 'Ubuntu', Verdana, Geneva, Tahoma, sans-serif;
 }
 
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #d7263d;
+    letter-spacing: 0.5px;
+}
+
 input,
 button {
     width: auto;
@@ -66,16 +170,43 @@ button {
     font-family: 'Ubuntu', Verdana, Geneva, Tahoma, sans-serif;
 }
 
+input[type="text"],
+input[type="number"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid #ffb347;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #fff9f3;
+    color: #333;
+    transition: border 0.2s;
+    margin-bottom: 2px;
+}
+
+input:focus,
+select:focus {
+    border-color: #d7263d;
+    outline: none;
+}
+
 button {
-    background-color: red;
-    color: white;
+    background: linear-gradient(90deg, #d7263d 60%, #ff8800 100%);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 22px;
+    font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s;
-    font-family: 'Ubuntu', Verdana, Geneva, Tahoma, sans-serif;
+    transition: background 0.2s, transform 0.2s;
+    margin-top: 6px;
 }
 
 button:hover {
-    background-color: red;
+    background: linear-gradient(90deg, #ff8800 60%, #d7263d 100%);
+    transform: scale(1.04);
 }
 
 table {
@@ -99,23 +230,58 @@ th {
     color: white;
 }
 
-.hidden {
-    display: none;
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 18px;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(215,38,61,0.07);
 }
 
-.icon {
-    margin-right: 5px;
+th, td {
+    padding: 12px 10px;
+    text-align: center;
+}
+
+th {
+    background: #b7eac5;
+    color: #226644;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #ffb347;
+}
+
+td {
+    background: #fff9f3;
+    color: #333;
+    font-size: 1rem;
+    border-bottom: 1px solid #ffe5b4;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+input[type="text"]:disabled,
+input[type="number"]:disabled {
+    background: #f3f3f3;
+    color: #aaa;
+}
+
+.hidden {
+    display: none !important;
 }
 
 #login {
     max-width: 400px;
-    margin: 100px auto;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.9);
-    /* Fundo branco com transparência */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Sombra leve */
+    margin: 60px auto 0 auto;
+    padding: 28px 24px 18px 24px;
+    background: rgba(255,255,255,0.97);
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(215,38,61,0.09);
     text-align: center;
 }
 
@@ -124,35 +290,59 @@ th {
     margin-bottom: 20px;
 }
 
+#login h2 {
+    color: #d7263d;
+    margin-bottom: 18px;
+}
+
 #login input {
-    width: calc(100% - 20px);
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 2px solid #e67e22;
-    /* Laranja queijo */
-    border-radius: 5px;
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 14px;
+    border: 1.5px solid #ffb347;
+    border-radius: 6px;
     font-size: 1rem;
-    background-color: #fff8e1;
-    /* Tom de massa de pizza */
+    background: #fff9f3;
     color: #333;
     text-align: center;
 }
 
 #login button {
-    background-color: #27ae60;
-    /* Verde manjericão */
-    color: white;
+    background: #27ae60;
+    color: #fff;
+    font-weight: 700;
     border: none;
-    padding: 10px 20px;
+    border-radius: 6px;
+    padding: 10px 22px;
     font-size: 1rem;
-    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background 0.2s;
+    margin-top: 8px;
 }
 
 #login button:hover {
-    background-color: #1e8449;
-    /* Verde mais escuro */
+    background: #ff8800;
+}
+
+#checkout {
+    text-align: right;
+    margin-top: 18px;
+}
+
+#checkout button {
+    background: #27ae60;
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 22px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#checkout button:hover {
+    background: #ff8800;
 }
 
 footer {
@@ -163,6 +353,9 @@ footer {
     bottom: 0;
     left: 0;
     background: transparent;
+    color: #d7263d;
+    font-size: 1rem;
+    letter-spacing: 1px;
 }
 
 .logo-senai {

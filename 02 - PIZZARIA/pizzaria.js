@@ -129,38 +129,41 @@ function logar() {
   }
 }
 
-compras = []
-function comprar(exibir = compras) {
-    const nomeCompra = document.getElementById("name").value;
-    const tipoCompra = document.getElementById("type").value;
-    const tamanhoCompra = document.getElementById("size").value;
-    const descricaoCompra = document.getElementById("description").value;
-    const precoCompra = parseFloat(document.getElementById("price").value);
+compras = [];
+function adicionarCompra(pizza) {
+  compras.push({ ...pizza });
+  alert("Pizza adicionada ao carrinho!");
 
-    compras.push({
-      nomeCompra,
-      tipoCompra,
-      tamanhoCompra,
-      descricaoCompra,
-      precoCompra,
-    });
-    alert("Pizza Salva!");
+  const tabela = document.getElementById("exibir-compra");
+  tabela.innerHTML = "";
 
-    const tabela = document.getElementById("exibir-compra");
-    tabela.innerHTML = "";
+  let total = 0;
+  compras.forEach((compra) => {
+    const linha = document.createElement("tr");
+    linha.innerHTML = `
+     <td>${compra.nome}</td>
+     <td>${compra.tipo}</td>
+     <td>${compra.tamanho}</td>
+     <td>${compra.descricao}</td>
+     <td>${compra.preco}</td>
+     `;
+    tabela.appendChild(linha);
+    total += compra.preco;
+  });
 
-    exibir.forEach((compra) => {
-      const linha = document.createElement("tr");
-      linha.innerHTML = `
-       <td>${compra.nome}</td>
-       <td>${compra.tipo}</td>
-       <td>${compra.tamanho}</td>
-       <td>${compra.descricao}</td>
-       <td>${compra.preco}</td>
-       `;
-      tabela.appendChild(linha);
-    });
+  // Exibe o total da compra
+  const totalLinha = document.createElement("tr");
+  totalLinha.innerHTML = `
+    <td colspan="4" style="text-align:right;"><strong>Total:</strong></td>
+    <td><strong>${total.toFixed(2)}</strong></td>
+  `;
+  tabela.appendChild(totalLinha);
 
+  document.getElementById("checkout").innerHTML = "<button onclick='finalizarCompra()'>Finalizar Compra</button>";
+}
+
+function finalizarCompra(pizza) {
+  
 }
  
 // function pedidosAbertos () {
@@ -172,11 +175,10 @@ function comprar(exibir = compras) {
 // }
 
 function atualizarLista(lista = pizzaria) {
-  // define tabela e insere os dados
   const tabela = document.getElementById("lista-pizzas");
   tabela.innerHTML = "";
 
-  lista.forEach((pizza) => {
+  lista.forEach((pizza, index) => {
     const linha = document.createElement("tr");
     linha.innerHTML = `
         <td>${pizza.nome}</td>
@@ -184,7 +186,7 @@ function atualizarLista(lista = pizzaria) {
         <td>${pizza.tamanho}</td>
         <td>${pizza.descricao}</td>
         <td>${pizza.preco}</td>
-        <td><button onclick="comprar()">Icone</button></td>
+        <td><button onclick="adicionarCompra(pizzaria[${index}])">+</button></td>
         `;
     tabela.appendChild(linha);
   });

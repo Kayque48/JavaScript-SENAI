@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <title>Projeto Pizzaria</title>
 </head>
 <body>
@@ -11,27 +12,27 @@
         <h1>Aplicativo Pizzaria</h1>
         <div id="menu">
             <button onclick="mostrarSecao('cadastroPizza')">
-                <i class=""></i>Cadastrar novo sabor de Pizza
+                <i class="fa-solid fa-pizza-slice"></i> Cadastrar novo sabor de Pizza
             </button>
 
             <button onclick="mostrarSecao('cardapio')">
-                <i class=""></i>Cardápio
+                <i class="fa-solid fa-book-open"></i> Cardápio
             </button>
 
             <button onclick="mostrarSecao('login')">
-                <i class=""></i>Logar no modo Adm
+                <i class="fa-solid fa-user-lock"></i> Logar no modo Adm
             </button>
             
             <button onclick="mostrarSecao('alterar')">
-                <i class=""></i>Alterar Pizza
+                <i class="fa-solid fa-pen-to-square"></i> Alterar Pizza
             </button>
 
             <button onclick="mostrarSecao('compra')">
-                <i class=""></i>Compras
+                <i class="fa-solid fa-cart-shopping"></i> Compras
             </button>
 
             <button onclick="mostrarSecao('pedidosAbertos')">
-                <i class=""></i>Registrar Pedido
+                <i class="fa-solid fa-receipt"></i> Registrar Pedido
             </button>
         </div>
     </div>
@@ -100,7 +101,7 @@
                     <th>Tamanho</th>
                     <th>Descrição</th>
                     <th>Preço</th>
-                    <th>Comprar</th>
+                    <th>Adicionar ao Carrinho</th>
                 </tr>    
             </thead>
             <tbody id="lista-pizzas">
@@ -178,26 +179,9 @@
                             <!-- As pizzas serão exibidas aqui -->
                         </tbody>
                     </table>
-                    <button onclick="finalizarCompra()">Finalizar Compra</button>
+                    <p id="total"></p>
+                    <p id="checkout"></p>
                 </div>
-
-
-        <script>
-            // Função para mostrar a seção correta e esconder as outras
-            function mostrarSecao(secaoId) {
-                const secoes = ['cadastroPizza', 'cardapio', 'login', 'alterar'];
-                secoes.forEach(id => {
-                    const el = document.getElementById(id);
-                    if (el) {
-                        if (id === secaoId) {
-                            el.classList.remove('hidden');
-                        } else {
-                            el.classList.add('hidden');
-                        }
-                    }
-                });
-            }
-        </script>
 
      <!-- Meu Script -->
     <script src="pizzaria.js"></script>
