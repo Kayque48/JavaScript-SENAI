@@ -51,6 +51,8 @@ function cadastrarPizza() {
   }
 }
 
+
+// função para buscar pizza
 function buscarPizza() {
   const busca = document.getElementById("busca").value.toLowerCase();
   const resultados = pizzaria.filter((pizza) =>
@@ -112,7 +114,7 @@ function logar() {
   //Conferir se todos os campos foram preenchidos
   if (user != "" && pass != "") {
     //Conferir se o usuário e a senha está correto
-    if (user == "KayqueAdm" && pass == "HanhodeAyds") {
+    if (user == "KayqueAdm" && pass == "1234") {
       document.getElementById(
         "resultadoLogin"
       ).innerHTML = `<p style="color: green;">Login realizado com <strong>sucesso!</strong><br>
