@@ -5,12 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <title>Projeto Pizzaria</title>
+    <title id="titulo" class="hidden">Projeto Pizzaria</title>
 </head>
 <body>
+    <div id="user" class="user-actions">
+        <button id="registerClient" onclick="mostrarSecao('cadastroCliente')">
+            <i class="fa-solid fa-user-plus"></i> Cadastrar
+        </button>
+        <button  id="loginClient" onclick="mostrarSecao('loginCliente')">
+            <i class="fa-solid fa-right-to-bracket"></i> Login
+        </button>
+    </div>
     <div id="container">
-        <h1>Pizza Souls</h1>
-        <div id="menu">
+       
+        <h1 onclick="mostrarSecao('menu')">Pizza Souls</h1>
+        <img src="pizza-souls-logo.png" alt="Logo Pizza Souls" class="logo-pizza-souls" style="display:block;margin:0 auto 24px auto;max-width:220px;width:100%;">
+
+        <div id="menu" class="menu-actions">
             <button onclick="mostrarSecao('cadastroPizza')">
                 <i class="fa-solid fa-pizza-slice"></i> Cadastrar novo sabor de Pizza
             </button>
@@ -19,10 +30,10 @@
                 <i class="fa-solid fa-book-open"></i> Cardápio
             </button>
 
-            <button onclick="mostrarSecao('login')">
+            <button onclick="mostrarSecao('loginAdm')">
                 <i class="fa-solid fa-user-lock"></i> Logar no modo Adm
             </button>
-            
+ 
             <button onclick="mostrarSecao('alterar')">
                 <i class="fa-solid fa-pen-to-square"></i> Alterar Pizza
             </button>
@@ -31,59 +42,108 @@
                 <i class="fa-solid fa-cart-shopping"></i> Carrinho
             </button>
 
-            <!-- <button onclick="mostrarSecao('pedidosAbertos')">
-                <i class="fa-solid fa-receipt"></i> Registrar Pedido
-            </button> -->
+                <button onclick="mostrarSecao('relatorioPedidos')">
+                <i class="fa-solid fa-receipt"></i> Relatório Pedidos
+            </button>
         </div>
     </div>
+
+    <!-- Seção de Cadastro do Cliente -->
+     <div id="cadastroCliente" class="hidden">
+        <button id="close" class="user-actions-close" onclick="mostrarSecao('container')">X</button>
+        <h1>Pizza Souls</h1>
+
+         <div class="container-interno">
+
+            <h2 id="title">Adcionar Novo Usuário</h2>
+
+            <div class="form-group">
+                <label for="user">Nome de Usuário: </label>
+                <input type="text" id="userClient" placeholder="Adicione seu nome de usuário">
+                <label for="email">Adicionar E-mail: </label>
+                <input type="email" id="emailClient" placeholder="Adicionar seu Email">
+                <label for="phone">Adicionar Telefone: </label>
+                <input type="tel" id="phoneClient" placeholder="Adcionar seu telefone">
+                <label for="address">Adicionar Endereço: </label>
+                <input type="text" id="addressClient" placeholder="Adicionar seu Endereço">
+                <label for="password">Defenir uma Senha: </label>
+                <input type="password" id="passwordClient">
+                <button onclick="cadastroCliente()">Cadastrar</button>
+                <p id="resultCadastro"></p>
+            </div>
+
+        </div>
+     </div>
+
+     <!-- Seçao de Login do Cliente -->
+     <div id="loginCliente" class="hidden">
+
+         <button id="close" class="user-actions-close" onclick="mostrarSecao('container')">X</button>
+
+        <div class="container-interno">
+            <h2 id="title">Logar em uma Conta</h2>
+            <div class="form-group">
+                <label>Usuário: </label>
+                <input type="text" id="loginClient">
+                <label>Senha: </label>
+                <input type="password" id="pass">
+                <button onclick="loginCliente()">Entrar</button>
+                <p id="resultLogin"></p>
+            </div>
+        </div>
+     </div>
+     
 
     <!-- Seção de Cadastro de Pizza -->
      <div id="cadastroPizza" class="hidden">
 
-        <h2 id="title">Adicionar Nova Receita ao Cardápio</h2>
-        
-        <div class="form-group">
-            <label for="name">Nome da Pizza:</label>
-            <input type="text" id="name" maxlength="20px">
-        </div>
+        <div class="container-interno">
 
-        <div class="form-group">
-            <label for="type">Tipo de Pizza:</label>
-            <select id="type">
+            <h2 id="title">Adicionar Nova Receita ao Cardápio</h2>
+            
+            <div class="form-group">
+                <label for="name">Nome da Pizza:</label>
+                <input type="text" id="name" maxlength="20px">
+            </div>
+
+            <div class="form-group">
+                <label for="type">Tipo de Pizza:</label>
+                <select id="type">
+                    <option value="">Selecione...</option>
+                    <option value="salgada">Salgado</option>
+                    <option value="doce">Doce</option>
+                    <option value="vegetariana">Vegetariana</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+            <label for="size">Tamanho da Pizza</label>
+            <select id="size">
                 <option value="">Selecione...</option>
-                <option value="salgada">Salgado</option>
-                <option value="doce">Doce</option>
-                <option value="vegetariana">Vegetariana</option>
+                <option value="G">Grande</option>
+                <option value="M">Media</option>
+                <option value="P">Pequena</option>
             </select>
-        </div>
+            </div>
 
-        <div class="form-group">
-           <label for="size">Tamanho da Pizza</label>
-           <select id="size">
-            <option value="">Selecione...</option>
-            <option value="G">Grande</option>
-            <option value="M">Media</option>
-            <option value="P">Pequena</option>
-           </select>
-        </div>
+            <div class="form-group">
+                <label for="description">Descrição da Pizza: </label>
+                <input type="text" id="description" maxlength="1000px">
+            </div>
 
-        <div class="form-group">
-            <label for="description">Descrição da Pizza: </label>
-            <input type="text" id="description" maxlength="1000px">
-        </div>
-
-        <div class="form-group">
-            <label for="price">Preço da Pizza(R$)</label>
-            <input type="number" id="price" name="price" value="59.99" max="210" min="29.99"> <br>
-        </div>
+            <div class="form-group">
+                <label for="price">Preço da Pizza(R$)</label>
+                <input type="number" id="price" name="price" value="59.99" max="210" min="29.99"> <br>
+            </div>
 
 
-        <div class="form-group">
-            <button onclick="cadastrarPizza()">Adicionar Pizza</button>
-        </div>
+            <div class="form-group">
+                <button onclick="cadastrarPizza()">Adicionar Pizza</button>
+            </div>
 
-        <div class="form-group"></div>
-            <p id="result"></p>
+            <div class="form-group"></div>
+                <p id="result"></p>
+            </div>
         </div>
         
     
@@ -91,97 +151,122 @@
 
      <!-- Cardápio -->
      <div id="cardapio" class="hidden">
-        <h2>Consultar Pizza</h2>
-        <input type="text" id="busca" placeholder="Buscar por nome" oninput="buscarPizza()">
-        <table>
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Tipo</th>
-                    <th>Tamanho</th>
-                    <th>Descrição</th>
-                    <th>Preço</th>
-                    <th>Adicionar ao Carrinho</th>
-                </tr>    
-            </thead>
-            <tbody id="lista-pizzas">
-                <!-- As pizzas serão exibidas aqui -->
-            </tbody>
-        </table>
+        <div class="container-interno">
+            <h2>Consultar Pizza</h2>
+            <input type="text" id="busca" placeholder="Buscar por nome" oninput="buscarPizza()">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Tipo</th>
+                        <th>Tamanho</th>
+                        <th>Descrição</th>
+                        <th>Preço</th>
+                        <th>Adicionar ao Carrinho</th>
+                    </tr>    
+                </thead>
+                <tbody id="lista-pizzas">
+                    <!-- As pizzas serão exibidas aqui -->
+                </tbody>
+            </table>
+        </div>
      </div>
 
 
-      <!-- Seção de Login -->
-       <div id="login" class="hidden">
-        <h2>Você está na seção de login</h2>
-        <label>Qual seu Usuário: </label>
-        <input type="text" id="user">
-        <label>Senha: </label>
-        <input type="password" id="password">
-        <button type="submit" onclick="logar()">Logar</button>
-        <p id="resultadoLogin"></p>
+      <!-- Seção de Login do Adm -->
+       <div id="loginAdm" class="hidden">
+        <div class="container-interno">
+            <h2>Você está na seção de login</h2>
+            <label>Qual seu Usuário: </label>
+            <input type="text" id="userAdm">
+            <label>Senha: </label>
+            <input type="password" id="password">
+            <button onclick="logar()">Logar</button>
+            <p id="resultadoLogin"></p>
+        </div>
        </div>
 
        <!-- Seção de alterar Pizza -->
-                <div id="alterar" class="hidden">
-                    <h2>Alterar Pizza</h2>
-                    <label>Qual pizza gostaria de Alterar: </label>
-                    <input type="text" id="busca-alterar" placeholder="Buscar por título" oninput="buscarPizzaAlteracao()">
-                    <div id="form-alterar" class="hidden">
-                        <div class="form-group">
-                            <label for="new-name">Novo nome:</label>
-                            <input type="text" id="new-name">
-                        </div>
-                        <div class="form-group">
-                            <label for="new-type">Novo tipo:</label>
-                            <select name="new-type" id="new-type">
-                                <option value="">Selecione...</option>
-                                <option value="salgada">Salgado</option>
-                                <option value="doce">Doce</option>
-                                <option value="vegetariana">Vegetariana</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="new-size">Novo tamanho:</label>
-                            <select name="new-size" id="new-size">
-                                <option value="">Selecione...</option>
-                                <option value="G">Grande</option>
-                                <option value="M">Media</option>
-                                <option value="P">Pequena</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="new-description">Nova descrição:</label>
-                            <input type="text" id="new-description">
-                        </div>
-                        <div class="form-group">
-                            <label for="new-price">Novo preço:</label>
-                            <input type="number" id="new-price">
-                        </div>
-                        <button onclick="alterarPizza()">Alterar</button>
+        <div id="alterar" class="hidden">
+            <div class="container-interno">
+                <h2>Alterar Pizza</h2>
+                <label>Qual pizza gostaria de Alterar: </label>
+                <input type="text" id="busca-alterar" placeholder="Buscar por título" oninput="buscarPizzaAlteracao()">
+                <div id="form-alterar" class="hidden">
+                    <div class="form-group">
+                        <label for="new-name">Novo nome:</label>
+                        <input type="text" id="new-name">
                     </div>
+                    <div class="form-group">
+                        <label for="new-type">Novo tipo:</label>
+                        <select name="new-type" id="new-type">
+                            <option value="">Selecione...</option>
+                            <option value="salgada">Salgado</option>
+                            <option value="doce">Doce</option>
+                            <option value="vegetariana">Vegetariana</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="new-size">Novo tamanho:</label>
+                        <select name="new-size" id="new-size">
+                            <option value="">Selecione...</option>
+                            <option value="G">Grande</option>
+                            <option value="M">Media</option>
+                            <option value="P">Pequena</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="new-description">Nova descrição:</label>
+                        <input type="text" id="new-description">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-price">Novo preço:</label>
+                        <input type="number" id="new-price">
+                    </div>
+                    <button onclick="alterarPizza()">Alterar</button>
                 </div>
+            </div>
+        </div>
 
-                <!-- Seção de Compras -->
-                <div id="compra" class="hidden">
-                    <h2>Comprar Pizza</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Nome</th>
-                                <th>Tipo</th>
-                                <th>Tamanho</th>
-                                <th>Descrição</th>
-                                <th>Preço</th>
-                            </tr>    
-                        </thead>
-                        <tbody id="exibir-compra">
-                            <!-- As pizzas serão exibidas aqui -->
-                        </tbody>
-                    </table>
-                    <p id="total"></p>
-                    <p id="checkout"></p>
-                </div>
+        <!-- Seção de Compras -->
+        <div id="compra" class="hidden">
+            <div class="container-interno">
+                <h2>Comprar Pizza</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Tipo</th>
+                            <th>Tamanho</th>
+                            <th>Descrição</th>
+                            <th>Preço Total</th>
+                            <th>Remover do Carrinho</th>
+                        </tr>    
+                    </thead>
+                    <tbody id="exibir-compra">
+                        <!-- As pizzas serão exibidas aqui -->
+                    </tbody>
+                </table>
+                <p id="total"></p>
+                <p id="checkout"></p>
+            </div>
+        </div>
+
+        <!-- Seção de Relatório dos Pedidos -->
+         <div id="relatorioPedidos" class="hidden">
+            <div class="container-interno">
+                <h2>Relatório Pedidos</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pizza: </th>
+                            <th>Cliente: </th>
+                            <th>Preço: </th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+         </div>
 
      <!-- Meu Script -->
     <script src="pizzaria.js"></script>

@@ -1,17 +1,64 @@
 pizzaria = [];
 PizzaParaAlterar = null;
 pedidos = [];
+clientes = []; 
+compras = [];
+
+let usuarioLogado = null;
+
+function atualizarUserActions() {
+  const userDiv = document.getElementById("user");
+  if (usuarioLogado) {
+    userDiv.innerHTML = `
+      <span style="color:#d7263d;font-weight:bold;font-size:1.1rem;">Olá, ${usuarioLogado}!</span>
+      <button onclick="logoutUsuario()"><i class='fa-solid fa-right-from-bracket'></i> Sair</button>
+    `;
+  } else {
+    userDiv.innerHTML = `
+      <button id="registerClient" onclick="mostrarSecao('cadastroCliente')">
+        <i class="fa-solid fa-user-plus"></i> Cadastrar
+      </button>
+      <button id="loginClient" onclick="mostrarSecao('loginCliente')">
+        <i class="fa-solid fa-right-to-bracket"></i> Login
+      </button>
+    `;
+  }
+}
+
+function logoutUsuario() {
+  usuarioLogado = null;
+  atualizarUserActions();
+  mostrarSecao('container');
+}
 
 // função para selecionar a operação deseja pelo usuário
 function mostrarSecao(secao) {
-  //Esconde todas as seções
+  // Esconde todas as seções principais
   document.getElementById("cadastroPizza").classList.add("hidden");
   document.getElementById("cardapio").classList.add("hidden");
-  document.getElementById("login").classList.add("hidden");
+  document.getElementById("loginAdm").classList.add("hidden");
   document.getElementById("alterar").classList.add("hidden");
   document.getElementById("compra").classList.add("hidden");
+  document.getElementById("cadastroCliente").classList.add("hidden");
+  document.getElementById("loginCliente").classList.add("hidden");
+  document.getElementById("relatorioPedidos").classList.add("hidden")
+  
 
-  //Exibi apenas a seção que foi selecionada
+  const menu = document.getElementById("menu");
+  if (secao === "cadastroCliente" || secao === "loginCliente") {
+    menu.classList.add("hidden");
+    document.getElementById("container").classList.add("hidden");
+    document.getElementById("registerClient").classList.add("hidden");
+    document.getElementById("loginClient").classList.add("hidden");
+
+  } else {
+    menu.classList.remove("hidden");
+    document.getElementById("container").classList.remove("hidden");
+    document.getElementById("registerClient").classList.remove("hidden");
+    document.getElementById("loginClient").classList.remove("hidden");
+  }
+
+  // Exibe apenas a seção que foi selecionada
   document.getElementById(secao).classList.remove("hidden");
 }
 
@@ -131,26 +178,32 @@ function logar() {
   }
 }
 
-compras = [];
+
 function adicionarCompra(pizza) {
   compras.push({ ...pizza });
   alert("Pizza adicionada ao carrinho!");
+  atualizarCarrinho();
+}
 
+function atualizarCarrinho(){
   const tabela = document.getElementById("exibir-compra");
   tabela.innerHTML = "";
 
   let total = 0;
-  compras.forEach((compra) => {
-    const linha = document.createElement("tr");
-    linha.innerHTML = `
-     <td>${compra.nome}</td>
-     <td>${compra.tipo}</td>
-     <td>${compra.tamanho}</td>
-     <td>${compra.descricao}</td>
-     <td>${compra.preco}</td>
-     `;
-    tabela.appendChild(linha);
-    total += compra.preco;
+  compras.forEach((compra, index) => {
+    if (compra && compra.nome) {
+      const linha = document.createElement("tr");
+      linha.innerHTML = `
+      <td>${compra.nome}</td>
+      <td>${compra.tipo}</td>
+      <td>${compra.tamanho}</td>
+      <td>${compra.descricao}</td>
+      <td>${compra.preco}</td>
+      <td><button onclick="removerCompra(${index})">-</button></td>
+      `;
+      tabela.appendChild(linha);
+      total += compra.preco;
+      }
   });
 
   // Exibe o total da compra
@@ -164,17 +217,73 @@ function adicionarCompra(pizza) {
   document.getElementById("checkout").innerHTML = "<button onclick='finalizarCompra()'>Finalizar Compra</button>";
 }
 
+function removerCompra(index) {
+  compras.splice(index, 1);
+  atualizarCarrinho();
+}
+
+
 function finalizarCompra(pizza) {
   
 }
  
-// function pedidosAbertos () {
-//     const nome = document.getElementById('name').value;
-//     const tipo = document.getElementById('type').value;
-//     const tamanho = document.getElementById('size').value;
-//     const descricao =document.getElementById('description').value;
-//     const preco = parseFloat(document.getElementById('price').value);
-// }
+function cadastroCliente(){
+
+  const user = document.getElementById("userClient").value;
+  const email = document.getElementById("emailClient").value;
+  const telefone = document.getElementById("phoneClient").value;
+  const senha = document.getElementById("passwordClient").value;
+
+  if (user != "" && email != "" && telefone != "" && senha != "") {
+    clientes.push({ user, email, telefone, senha });
+    document.getElementById("resultCadastro").innerHTML = `<p style="color: green; font-weight: bold;">Cadastro realizado com sucesso!</p>`;
+  } else {
+    document.getElementById("resultCadastro").innerHTML = `<p style="color: red; font-weight: bold;">Falha no cadastro! Preencha todos os campos.</p>`;
+  }
+}
+
+function atualizarUserActions() {
+  const userActions = document.getElementById("user");
+  const registerBtn = document.getElementById("registerClient");
+  const loginBtn = document.getElementById("loginClient");
+  let userNameSpan = document.getElementById("userName");
+  let logoutBtn = document.getElementById("logoutBtn");
+
+  if (usuarioLogado) {
+    // Esconde botões
+    if (registerBtn) registerBtn.style.display = "none";
+    if (loginBtn) loginBtn.style.display = "none";
+    // Cria span do nome se não existir
+    if (!userNameSpan) {
+      userNameSpan = document.createElement("span");
+      userNameSpan.id = "userName";
+      userNameSpan.style.fontWeight = "bold";
+      userNameSpan.style.color = "#d7263d";
+      userNameSpan.style.fontSize = "1.1rem";
+      userActions.appendChild(userNameSpan);
+    }
+    userNameSpan.textContent = `👤 ${usuarioLogado}`;
+    // Cria botão logout se não existir
+    if (!logoutBtn) {
+      logoutBtn = document.createElement("button");
+      logoutBtn.id = "logoutBtn";
+      logoutBtn.innerHTML = '<i class="fa-solid fa-arrow-right-from-bracket"></i> Sair';
+      logoutBtn.onclick = logoutUsuario;
+      logoutBtn.className = "user-actions-close";
+      userActions.appendChild(logoutBtn);
+    }
+    userNameSpan.style.display = "inline-block";
+    logoutBtn.style.display = "inline-block";
+  } else {
+    // Mostra botões
+    if (registerBtn) registerBtn.style.display = "inline-block";
+    if (loginBtn) loginBtn.style.display = "inline-block";
+    // Esconde nome e logout
+    if (userNameSpan) userNameSpan.style.display = "none";
+    if (logoutBtn) logoutBtn.style.display = "none";
+  }
+}
+
 
 function atualizarLista(lista = pizzaria) {
   const tabela = document.getElementById("lista-pizzas");
