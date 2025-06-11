@@ -4,33 +4,6 @@ pedidos = [];
 clientes = []; 
 compras = [];
 
-let usuarioLogado = null;
-
-function atualizarUserActions() {
-  const userDiv = document.getElementById("user");
-  if (usuarioLogado) {
-    userDiv.innerHTML = `
-      <span style="color:#d7263d;font-weight:bold;font-size:1.1rem;">Olá, ${usuarioLogado}!</span>
-      <button onclick="logoutUsuario()"><i class='fa-solid fa-right-from-bracket'></i> Sair</button>
-    `;
-  } else {
-    userDiv.innerHTML = `
-      <button id="registerClient" onclick="mostrarSecao('cadastroCliente')">
-        <i class="fa-solid fa-user-plus"></i> Cadastrar
-      </button>
-      <button id="loginClient" onclick="mostrarSecao('loginCliente')">
-        <i class="fa-solid fa-right-to-bracket"></i> Login
-      </button>
-    `;
-  }
-}
-
-function logoutUsuario() {
-  usuarioLogado = null;
-  atualizarUserActions();
-  mostrarSecao('container');
-}
-
 // função para selecionar a operação deseja pelo usuário
 function mostrarSecao(secao) {
   // Esconde todas as seções principais
@@ -39,26 +12,8 @@ function mostrarSecao(secao) {
   document.getElementById("loginAdm").classList.add("hidden");
   document.getElementById("alterar").classList.add("hidden");
   document.getElementById("compra").classList.add("hidden");
-  document.getElementById("cadastroCliente").classList.add("hidden");
-  document.getElementById("loginCliente").classList.add("hidden");
-  document.getElementById("relatorioPedidos").classList.add("hidden")
+  document.getElementById("relatorioVendas").classList.add("hidden");
   
-
-  const menu = document.getElementById("menu");
-  if (secao === "cadastroCliente" || secao === "loginCliente") {
-    menu.classList.add("hidden");
-    document.getElementById("container").classList.add("hidden");
-    document.getElementById("registerClient").classList.add("hidden");
-    document.getElementById("loginClient").classList.add("hidden");
-
-  } else {
-    menu.classList.remove("hidden");
-    document.getElementById("container").classList.remove("hidden");
-    document.getElementById("registerClient").classList.remove("hidden");
-    document.getElementById("loginClient").classList.remove("hidden");
-  }
-
-  // Exibe apenas a seção que foi selecionada
   document.getElementById(secao).classList.remove("hidden");
 }
 
@@ -124,7 +79,7 @@ function buscarPizzaAlteracao() {
       pizzaParaAlterar.descricao;
     document.getElementById("new-price").value = pizzaParaAlterar.preco;
   } else {
-    alert("Pizza não encontrada.");
+    
   }
 }
 
@@ -144,10 +99,10 @@ function alterarPizza() {
       pizzaParaAlterar.preco = novoPreco;
 
       atualizarLista();
-      alert("Pizza alterado com sucesso!");
+      document.getElementById("resultadoAlteacao").innerHTML = `<p>Pizza alterada com sucesso!</p>`;
       document.getElementById("form-alterar").classList.add("hidden");
     } else {
-      alert("Por favor, preencha todos os campos.");
+      document.getElementById("resultadoAlteacao").innerHTML = `<p style="color:red;">Por favor, preencha todos os campos.</p>`;
     }
   }
 }
@@ -181,7 +136,7 @@ function logar() {
 
 function adicionarCompra(pizza) {
   compras.push({ ...pizza });
-  alert("Pizza adicionada ao carrinho!");
+  document.getElementById("resultadoCompra").innerHTML = "Pizza adicionada ao carrinho!";
   atualizarCarrinho();
 }
 
@@ -209,6 +164,7 @@ function atualizarCarrinho(){
   // Exibe o total da compra
   const totalLinha = document.createElement("tr");
   totalLinha.innerHTML = `
+    <td></td>
     <td colspan="4" style="text-align:right;"><strong>Total:</strong></td>
     <td><strong>${total.toFixed(2)}</strong></td>
   `;
@@ -224,67 +180,136 @@ function removerCompra(index) {
 
 
 function finalizarCompra(pizza) {
-  
+  const tabela = document.getElementById("relatorios");
+  tabela.innerHTML = ""
+
+  relatorio.forEach((clientes, index) => {
+    linha = document.createElement("tr");
+    linha.innerHTML = `
+    <td>${clientes.nome}</td>
+    <td>${clientes.pizza}</td>
+    <td>${clientes.preco}</td>
+    `;
+    tabela.appendChild(linha)
+  });
 }
  
-function cadastroCliente(){
+// function cadastroCliente(){
 
-  const user = document.getElementById("userClient").value;
-  const email = document.getElementById("emailClient").value;
-  const telefone = document.getElementById("phoneClient").value;
-  const senha = document.getElementById("passwordClient").value;
+//   const user = document.getElementById("userClient").value;
+//   const email = document.getElementById("emailClient").value;
+//   const telefone = document.getElementById("phoneClient").value;
+//   const senha = document.getElementById("passwordClient").value;
 
-  if (user != "" && email != "" && telefone != "" && senha != "") {
-    clientes.push({ user, email, telefone, senha });
-    document.getElementById("resultCadastro").innerHTML = `<p style="color: green; font-weight: bold;">Cadastro realizado com sucesso!</p>`;
+//   if (user != "" && email != "" && telefone != "" && senha != "") {
+//     clientes.push({ user, email, telefone, senha });
+//     document.getElementById("resultCadastro").innerHTML = `<p style="color: green; font-weight: bold;">Cadastro realizado com sucesso!</p>`;
+//   } else {
+//     document.getElementById("resultCadastro").innerHTML = `<p style="color: red; font-weight: bold;">Falha no cadastro! Preencha todos os campos.</p>`;
+//   }
+// }
+
+// function cadastrarUsuario(novoUsuario, novaSenha) {
+//   let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+//   // Verifica se já existe
+//   if (usuarios.some((u) => u.usuario === novoUsuario)) {
+//     exibirMensagem("Usuário já existe!", "erro");
+//     return false;
+//   }
+//   usuarios.push({ usuario: novoUsuario, senha: novaSenha });
+//   localStorage.setItem("usuarios", JSON.stringify(usuarios));
+//   exibirMensagem("Usuário cadastrado com sucesso!", "sucesso");
+//   return true;
+// }
+
+// // Busca usuário no localStorage
+// function buscarUsuario(usuario, senha) {
+//   let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+//   return usuarios.find((u) => u.usuario === usuario && u.senha === senha);
+// }
+
+// // Busca usuário apenas pelo nome
+// function buscarUsuarioPorNome(usuario) {
+//   let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+//   return usuarios.find((u) => u.usuario === usuario);
+// }
+
+function exibirMensagem(texto, tipo) {
+  const mensagem = document.getElementById("mensagem");
+  mensagem.textContent = texto;
+  // Adiciona a classe de estilo (sucesso ou erro)
+  mensagem.className = `mensagem ${tipo}`;
+  mensagem.classList.remove("hidden");
+
+  // Remove a mensagem após 3 segundos
+  setTimeout(() => {
+    mensagem.classList.add("hidden");
+  }, 3000);
+}
+
+function validarLogin() {
+  const usuario = document.getElementById("usuario").value;
+  const cliente = document.getElementById("usuario").value;
+  const senha = document.getElementById("senha").value;
+
+
+  if (buscarUsuario(usuario, senha)) {
+    exibirMensagem("Login realizado com sucesso!", "sucesso");
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 1000);
+    if (buscarUsuario(cliente, senha)) {
+      exibirMensagem("Login realizado com sucesso!", "sucesso");
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 1000);
+    }
   } else {
-    document.getElementById("resultCadastro").innerHTML = `<p style="color: red; font-weight: bold;">Falha no cadastro! Preencha todos os campos.</p>`;
+    exibirMensagem("Usuário ou senha incorretos.", "erro");
   }
 }
 
-function atualizarUserActions() {
-  const userActions = document.getElementById("user");
-  const registerBtn = document.getElementById("registerClient");
-  const loginBtn = document.getElementById("loginClient");
-  let userNameSpan = document.getElementById("userName");
-  let logoutBtn = document.getElementById("logoutBtn");
+// function esqueceuSenha() {
+//   const usuario = prompt("Digite seu usuário:");
+//   const user = buscarUsuarioPorNome(usuario);
+//   if (user) {
+//     exibirMensagem(`Sua senha é: ${user.senha}`, "sucesso");
+//   } else {
+//     exibirMensagem("Usuário não encontrado.", `erro`);
+//   }
+// }
 
-  if (usuarioLogado) {
-    // Esconde botões
-    if (registerBtn) registerBtn.style.display = "none";
-    if (loginBtn) loginBtn.style.display = "none";
-    // Cria span do nome se não existir
-    if (!userNameSpan) {
-      userNameSpan = document.createElement("span");
-      userNameSpan.id = "userName";
-      userNameSpan.style.fontWeight = "bold";
-      userNameSpan.style.color = "#d7263d";
-      userNameSpan.style.fontSize = "1.1rem";
-      userActions.appendChild(userNameSpan);
-    }
-    userNameSpan.textContent = `👤 ${usuarioLogado}`;
-    // Cria botão logout se não existir
-    if (!logoutBtn) {
-      logoutBtn = document.createElement("button");
-      logoutBtn.id = "logoutBtn";
-      logoutBtn.innerHTML = '<i class="fa-solid fa-arrow-right-from-bracket"></i> Sair';
-      logoutBtn.onclick = logoutUsuario;
-      logoutBtn.className = "user-actions-close";
-      userActions.appendChild(logoutBtn);
-    }
-    userNameSpan.style.display = "inline-block";
-    logoutBtn.style.display = "inline-block";
-  } else {
-    // Mostra botões
-    if (registerBtn) registerBtn.style.display = "inline-block";
-    if (loginBtn) loginBtn.style.display = "inline-block";
-    // Esconde nome e logout
-    if (userNameSpan) userNameSpan.style.display = "none";
-    if (logoutBtn) logoutBtn.style.display = "none";
-  }
-}
+// function abrirCadastroUsuario() {
+//   const novoUsuario = prompt("Digite o novo usuário:");
+//   if (!novoUsuario) return;
+//   const novaSenha = prompt("Digite a nova senha:");
+//   if (!novaSenha) return;
+//   cadastrarUsuario(novoUsuario, novaSenha);
+// }
 
+// function mostrarCadastroUsuario() {
+//   document.getElementById("login").classList.add("hidden");
+//   document.getElementById("cadastro-usuario").classList.remove("hidden");
+// }
 
+// function voltarLogin() {
+//   document.getElementById("cadastro-usuario").classList.add("hidden");
+//   document.getElementById("login").classList.remove("hidden");
+// }
+
+// function enviarCadastroUsuario() {
+//   const novoUsuario = document.getElementById("novo-usuario").value.trim();
+//   const novaSenha = document.getElementById("nova-senha").value.trim();
+//   if (!novoUsuario || !novaSenha) {
+//     exibirMensagem("Preencha todos os campos!", "erro");
+//     return;
+//   }
+//   if (cadastrarUsuario(novoUsuario, novaSenha)) {
+//     document.getElementById("novo-usuario").value = "";
+//     document.getElementById("nova-senha").value = "";
+//     voltarLogin();
+//   }
+// }
 function atualizarLista(lista = pizzaria) {
   const tabela = document.getElementById("lista-pizzas");
   tabela.innerHTML = "";

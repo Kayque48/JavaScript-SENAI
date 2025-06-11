@@ -13,7 +13,7 @@
             <i class="fa-solid fa-user-plus"></i> Cadastrar
         </button>
         <button  id="loginClient" onclick="mostrarSecao('loginCliente')">
-            <i class="fa-solid fa-right-to-bracket"></i> Login
+            <i class="fa-solid fa-right-to-bracket"></i> Entrar no modo
         </button>
     </div>
     <div id="container">
@@ -48,14 +48,14 @@
         </div>
     </div>
 
-    <!-- Seção de Cadastro do Cliente -->
+    <!-- Seção de Cadastro do Cliente
      <div id="cadastroCliente" class="hidden">
         <button id="close" class="user-actions-close" onclick="mostrarSecao('container')">X</button>
         <h1>Pizza Souls</h1>
 
          <div class="container-interno">
 
-            <h2 id="title">Adcionar Novo Usuário</h2>
+            <h2 id="title">Adicionar Novo Usuário</h2>
 
             <div class="form-group">
                 <label for="user">Nome de Usuário: </label>
@@ -66,16 +66,15 @@
                 <input type="tel" id="phoneClient" placeholder="Adcionar seu telefone">
                 <label for="address">Adicionar Endereço: </label>
                 <input type="text" id="addressClient" placeholder="Adicionar seu Endereço">
-                <label for="password">Defenir uma Senha: </label>
+                <label for="password">Definir uma Senha: </label>
                 <input type="password" id="passwordClient">
                 <button onclick="cadastroCliente()">Cadastrar</button>
                 <p id="resultCadastro"></p>
             </div>
 
-        </div>
-     </div>
+        </div> -->
 
-     <!-- Seçao de Login do Cliente -->
+     <!-- Seçao de Login do Cliente 
      <div id="loginCliente" class="hidden">
 
          <button id="close" class="user-actions-close" onclick="mostrarSecao('container')">X</button>
@@ -91,7 +90,7 @@
                 <p id="resultLogin"></p>
             </div>
         </div>
-     </div>
+     </div> -->
      
 
     <!-- Seção de Cadastro de Pizza -->
@@ -169,6 +168,8 @@
                     <!-- As pizzas serão exibidas aqui -->
                 </tbody>
             </table>
+            <p id="resultadoCompra"></p>
+            <p id="resultadoBusca"></p>
         </div>
      </div>
 
@@ -224,6 +225,7 @@
                         <input type="number" id="new-price">
                     </div>
                     <button onclick="alterarPizza()">Alterar</button>
+                    <p id="resultadoAlteracao"></p>
                 </div>
             </div>
         </div>
@@ -253,18 +255,23 @@
         </div>
 
         <!-- Seção de Relatório dos Pedidos -->
-         <div id="relatorioPedidos" class="hidden">
+         <div id="relatorioVendas" class="hidden">
             <div class="container-interno">
-                <h2>Relatório Pedidos</h2>
+                <h2>Relatório Vendas</h2>
                 <table>
                     <thead>
                         <tr>
+                            <th>Cliente </th>
                             <th>Pizza: </th>
-                            <th>Cliente: </th>
                             <th>Preço: </th>
                         </tr>
                     </thead>
                 </table>
+                <tbody>
+                    <tr id="relatorio">
+                        <!-- Os pedidos serão exibidos aqui -->
+                    </tr>
+                </tbody>
             </div>
          </div>
 
