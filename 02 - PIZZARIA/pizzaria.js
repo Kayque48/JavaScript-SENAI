@@ -4,6 +4,9 @@ pedidos = [];
 clientes = []; 
 compras = [];
 
+// Adicione um array para armazenar os pedidos finalizados
+let relatorio = [];
+
 // função para selecionar a operação deseja pelo usuário
 function mostrarSecao(secao) {
   // Esconde todas as seções principais
@@ -107,29 +110,65 @@ function alterarPizza() {
   }
 }
 
-// função para logar usuário(ADM)
-function logar() {
-  //Buscar valores definidos pelo usuário
-  const user = document.getElementById("user").value;
-  const pass = document.getElementById("password").value;
+function exibirMensagem(texto, tipo) {
+    const mensagem = document.getElementById("mensagem");
+    mensagem.textContent = texto;
+    // Adiciona a classe de estilo (sucesso ou erro)
+    mensagem.className = `mensagem mensagem-${tipo}`;
+    mensagem.classList.remove("hidden");
 
-  //Conferir se todos os campos foram preenchidos
-  if (user != "" && pass != "") {
-    //Conferir se o usuário e a senha está correto
-    if (user == "KayqueAdm" && pass == "1234") {
-      document.getElementById(
-        "resultadoLogin"
-      ).innerHTML = `<p style="color: green;">Login realizado com <strong>sucesso!</strong><br>
-            Bem vindo ${user}</p>`;
-    } else {
-      document.getElementById(
-        "resultadoLogin"
-      ).innerHTML = `<p style="color: red;">Usuário ou senha <strong>incorreta!</strong><p>`;
-    }
+    // Remove a mensagem após 3 segundos
+    setTimeout(() => {
+        mensagem.classList.add("hidden")
+    }, 3000);
+}
+
+if (localStorage.getItem("clientes")) {
+  clientes = JSON.parse(localStorage.getItem("clientes"));
+}
+
+function salvarClientes() {
+  localStorage.setItem("clientes", JSON.stringify(clientes));
+}
+
+function validarCadastro() {
+  const nome = document.getElementById("cadastroUsuario").value;
+  const email = document.getElementById("cadastroEmail").value;
+  const telefone = document.getElementById("cadastroTelefone").value;
+  const senha = document.getElementById("cadastroSenha").value;
+
+  if (nome && email && telefone && senha) {
+    clientes.push({ nome, email, telefone, senha });
+    salvarClientes();
+    exibirMensagem("Cadastro realizado com sucesso!", "sucesso");
+    setTimeout(() => {
+      window.location.href = "login.html";
+    }, 1000);
   } else {
-    document.getElementById(
-      "resultadoLogin"
-    ).innerHTML = `<p>Preencha todos os campos!!<p>`;
+    exibirMensagem("Preencha todos os campos corretamente.", "erro");
+  }
+}
+
+// Valida o login do usuário conferindo no array clientes
+function validarlogin() {
+ if (localStorage.getItem("clientes")) {
+  clientes = JSON.parse(localStorage.getItem("clientes"));
+ }
+
+ const usuario = document.getElementById("usuario").value;
+ const senha = document.getElementById("senha").value;
+
+  const clienteEncontrado = clientes.find(
+    (c) => c.nome === usuario && c.senha === senha
+  );
+
+  if (clienteEncontrado) {
+    exibirMensagem("Login realizado com sucesso!", "sucesso");
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 1000);
+  } else {
+    exibirMensagem("Usuário ou senha incorretos", "erro");
   }
 }
 
@@ -179,94 +218,56 @@ function removerCompra(index) {
 }
 
 
-function finalizarCompra(pizza) {
-  const tabela = document.getElementById("relatorios");
-  tabela.innerHTML = ""
-
-  relatorio.forEach((clientes, index) => {
-    linha = document.createElement("tr");
-    linha.innerHTML = `
-    <td>${clientes.nome}</td>
-    <td>${clientes.pizza}</td>
-    <td>${clientes.preco}</td>
-    `;
-    tabela.appendChild(linha)
-  });
-}
- 
-// function cadastroCliente(){
-
-//   const user = document.getElementById("userClient").value;
-//   const email = document.getElementById("emailClient").value;
-//   const telefone = document.getElementById("phoneClient").value;
-//   const senha = document.getElementById("passwordClient").value;
-
-//   if (user != "" && email != "" && telefone != "" && senha != "") {
-//     clientes.push({ user, email, telefone, senha });
-//     document.getElementById("resultCadastro").innerHTML = `<p style="color: green; font-weight: bold;">Cadastro realizado com sucesso!</p>`;
-//   } else {
-//     document.getElementById("resultCadastro").innerHTML = `<p style="color: red; font-weight: bold;">Falha no cadastro! Preencha todos os campos.</p>`;
-//   }
-// }
-
-// function cadastrarUsuario(novoUsuario, novaSenha) {
-//   let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-//   // Verifica se já existe
-//   if (usuarios.some((u) => u.usuario === novoUsuario)) {
-//     exibirMensagem("Usuário já existe!", "erro");
-//     return false;
-//   }
-//   usuarios.push({ usuario: novoUsuario, senha: novaSenha });
-//   localStorage.setItem("usuarios", JSON.stringify(usuarios));
-//   exibirMensagem("Usuário cadastrado com sucesso!", "sucesso");
-//   return true;
-// }
-
-// // Busca usuário no localStorage
-// function buscarUsuario(usuario, senha) {
-//   let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-//   return usuarios.find((u) => u.usuario === usuario && u.senha === senha);
-// }
-
-// // Busca usuário apenas pelo nome
-// function buscarUsuarioPorNome(usuario) {
-//   let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-//   return usuarios.find((u) => u.usuario === usuario);
-// }
-
-function exibirMensagem(texto, tipo) {
-  const mensagem = document.getElementById("mensagem");
-  mensagem.textContent = texto;
-  // Adiciona a classe de estilo (sucesso ou erro)
-  mensagem.className = `mensagem ${tipo}`;
-  mensagem.classList.remove("hidden");
-
-  // Remove a mensagem após 3 segundos
-  setTimeout(() => {
-    mensagem.classList.add("hidden");
-  }, 3000);
-}
-
-function validarLogin() {
-  const usuario = document.getElementById("usuario").value;
-  const cliente = document.getElementById("usuario").value;
-  const senha = document.getElementById("senha").value;
-
-
-  if (buscarUsuario(usuario, senha)) {
-    exibirMensagem("Login realizado com sucesso!", "sucesso");
-    setTimeout(() => {
-      window.location.href = "index.html";
-    }, 1000);
-    if (buscarUsuario(cliente, senha)) {
-      exibirMensagem("Login realizado com sucesso!", "sucesso");
-      setTimeout(() => {
-        window.location.href = "index.html";
-      }, 1000);
-    }
-  } else {
-    exibirMensagem("Usuário ou senha incorretos.", "erro");
+function finalizarCompra() {
+  if (compras.length === 0) {
+    document.getElementById("resultadoCarrinho").innerHTML= `<p>O carrinho está vazio!</p>`;
+    return;
   }
+
+  // Pega o último cliente cadastrado (ou logado)
+  let clienteAtual = clientes.length > 0 ? clientes[clientes.length - 1] : { nome: "Cliente Anônimo" };
+
+  // Para cada pizza no carrinho, adiciona um pedido ao array pedidos
+  compras.forEach((pizza) => {
+    pedidos.push({
+      cliente: {
+        nome: clienteAtual.nome,
+        email: clienteAtual.email,
+        telefone: clienteAtual.telefone
+      },
+      pizza: {
+        nome: pizza.nome,
+        tipo: pizza.tipo,
+        tamanho: pizza.tamanho,
+        descricao: pizza.descricao,
+        preco: pizza.preco
+      }
+    });
+  });
+
+
+
+  // Limpa o carrinho e atualiza a tela
+  compras = [];
+  atualizarCarrinho();
+  document.getElementById("resultadoFinalizarCompra").innerHTML = `<p>Compra finalizada com sucesso!</p>`;
+  atualizarRelatorio();
+}
+
+// Função para atualizar o relatório na tela
+function atualizarRelatorio() {
+  const tabela = document.getElementById("relatorio");
+  if (!tabela) return;
+  tabela.innerHTML = "";
+  pedidos.forEach((pedido, index) => {
+    const linha = document.createElement("tr");
+    linha.innerHTML = `
+      <td>${pedido.cliente.nome}</td>
+      <td>${pedido.pizza.nome} (${pedido.pizza.tamanho}, ${pedido.pizza.tipo})</td>
+      <td>R$ ${pedido.pizza.preco.toFixed(2)}</td>
+    `;
+    tabela.appendChild(linha);
+  });
 }
 
 function atualizarLista(lista = pizzaria) {

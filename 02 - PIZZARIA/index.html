@@ -8,14 +8,6 @@
     <title id="titulo" class="hidden">Projeto Pizzaria</title>
 </head>
 <body>
-    <div id="user" class="user-actions">
-        <button id="registerClient" onclick="mostrarSecao('cadastroCliente')">
-            <i class="fa-solid fa-user-plus"></i> Cadastrar
-        </button>
-        <button  id="loginClient" onclick="mostrarSecao('loginCliente')">
-            <i class="fa-solid fa-right-to-bracket"></i> Entrar no modo
-        </button>
-    </div>
     <div id="container">
        
         <h1 onclick="mostrarSecao('menu')">Pizza Souls</h1>
@@ -42,56 +34,11 @@
                 <i class="fa-solid fa-cart-shopping"></i> Carrinho
             </button>
 
-                <button onclick="mostrarSecao('relatorioPedidos')">
+                <button onclick="mostrarSecao('relatorioVendas')">
                 <i class="fa-solid fa-receipt"></i> Relatório Pedidos
             </button>
         </div>
     </div>
-
-    <!-- Seção de Cadastro do Cliente
-     <div id="cadastroCliente" class="hidden">
-        <button id="close" class="user-actions-close" onclick="mostrarSecao('container')">X</button>
-        <h1>Pizza Souls</h1>
-
-         <div class="container-interno">
-
-            <h2 id="title">Adicionar Novo Usuário</h2>
-
-            <div class="form-group">
-                <label for="user">Nome de Usuário: </label>
-                <input type="text" id="userClient" placeholder="Adicione seu nome de usuário">
-                <label for="email">Adicionar E-mail: </label>
-                <input type="email" id="emailClient" placeholder="Adicionar seu Email">
-                <label for="phone">Adicionar Telefone: </label>
-                <input type="tel" id="phoneClient" placeholder="Adcionar seu telefone">
-                <label for="address">Adicionar Endereço: </label>
-                <input type="text" id="addressClient" placeholder="Adicionar seu Endereço">
-                <label for="password">Definir uma Senha: </label>
-                <input type="password" id="passwordClient">
-                <button onclick="cadastroCliente()">Cadastrar</button>
-                <p id="resultCadastro"></p>
-            </div>
-
-        </div> -->
-
-     <!-- Seçao de Login do Cliente 
-     <div id="loginCliente" class="hidden">
-
-         <button id="close" class="user-actions-close" onclick="mostrarSecao('container')">X</button>
-
-        <div class="container-interno">
-            <h2 id="title">Logar em uma Conta</h2>
-            <div class="form-group">
-                <label>Usuário: </label>
-                <input type="text" id="loginClient">
-                <label>Senha: </label>
-                <input type="password" id="pass">
-                <button onclick="loginCliente()">Entrar</button>
-                <p id="resultLogin"></p>
-            </div>
-        </div>
-     </div> -->
-     
 
     <!-- Seção de Cadastro de Pizza -->
      <div id="cadastroPizza" class="hidden">
@@ -230,7 +177,7 @@
             </div>
         </div>
 
-        <!-- Seção de Compras -->
+        <!-- Seção de Carrinho -->
         <div id="compra" class="hidden">
             <div class="container-interno">
                 <h2>Comprar Pizza</h2>
@@ -251,6 +198,7 @@
                 </table>
                 <p id="total"></p>
                 <p id="checkout"></p>
+                <p id="resultadoFinalizarCompra"></p>
             </div>
         </div>
 

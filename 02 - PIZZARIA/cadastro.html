@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <!-- Importa o CSS de login -->
+    <link rel="stylesheet" href="cadastro.css">
+</head>
+<body>
+    <!-- Importa o JavaScript principal -->
+    <script src="pizzaria.js"></script>
+    <!-- Container principal do formulário de Cadastro -->
+    <div id="cadastro" class="container">
+        <!-- Título do sistema -->
+        <h1>Bem-vindo a Pizza Souls </h1>
+        <!-- Subtítulo -->
+        <h2>Primeiro Acesso? Realize o cadastro para continuar</h2>
+        <!-- Campo de usuário -->
+        <div class="form-group">
+            <label for="cadastroUsuario">Usuário: </label>
+            <input type="text" id="cadastroUsuario" placeholder="Definir seu nome de usuário">
+        </div>
+        <!-- Campo de E-mail -->
+        <div class="form-group">
+            <label for="CadastroEmail">Email: </label>
+            <input type="email" id="cadastroEmail" placeholder="Inserir seu email">
+        </div>
+        <!-- Campo de telefone -->
+        <div class="form-group">
+            <label for="CadastroTelefone">Telefone: </label>
+            <input type="text" id="cadastroTelefone" placeholder="Inserir seu telefone">
+        </div>
+        <!-- Campo de senha -->
+        <div class="form-group">
+            <label for="senha">Senha:</label>
+            <input type="password" id="cadastroSenha" placeholder="Digite sua senha">
+        </div>
+        <!-- Botão de login -->
+        <p><button onclick="validarCadastro()">Cadastrar</button></p>
+        <!-- Mensagem de erro ou sucesso (oculta por padrão) -->
+        <p id="mensagem" class="mensagem hidden"></p>
+    </div>
+</body>
+</html>
