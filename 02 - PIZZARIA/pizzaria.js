@@ -269,47 +269,6 @@ function validarLogin() {
   }
 }
 
-// function esqueceuSenha() {
-//   const usuario = prompt("Digite seu usuário:");
-//   const user = buscarUsuarioPorNome(usuario);
-//   if (user) {
-//     exibirMensagem(`Sua senha é: ${user.senha}`, "sucesso");
-//   } else {
-//     exibirMensagem("Usuário não encontrado.", `erro`);
-//   }
-// }
-
-// function abrirCadastroUsuario() {
-//   const novoUsuario = prompt("Digite o novo usuário:");
-//   if (!novoUsuario) return;
-//   const novaSenha = prompt("Digite a nova senha:");
-//   if (!novaSenha) return;
-//   cadastrarUsuario(novoUsuario, novaSenha);
-// }
-
-// function mostrarCadastroUsuario() {
-//   document.getElementById("login").classList.add("hidden");
-//   document.getElementById("cadastro-usuario").classList.remove("hidden");
-// }
-
-// function voltarLogin() {
-//   document.getElementById("cadastro-usuario").classList.add("hidden");
-//   document.getElementById("login").classList.remove("hidden");
-// }
-
-// function enviarCadastroUsuario() {
-//   const novoUsuario = document.getElementById("novo-usuario").value.trim();
-//   const novaSenha = document.getElementById("nova-senha").value.trim();
-//   if (!novoUsuario || !novaSenha) {
-//     exibirMensagem("Preencha todos os campos!", "erro");
-//     return;
-//   }
-//   if (cadastrarUsuario(novoUsuario, novaSenha)) {
-//     document.getElementById("novo-usuario").value = "";
-//     document.getElementById("nova-senha").value = "";
-//     voltarLogin();
-//   }
-// }
 function atualizarLista(lista = pizzaria) {
   const tabela = document.getElementById("lista-pizzas");
   tabela.innerHTML = "";
