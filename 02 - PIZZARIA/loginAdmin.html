@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Administrador</title>
+    <!-- Importa o CSS de login -->
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <!-- Adicione logo após <body> -->
+    <div id="fechar" class="container-fechar">
+        <button onclick="fecharWeb()" title="Fechar">X</button>
+    </div>
+
+    <!-- Importa o JavaScript principal -->
+    <script src="pizzaria.js"></script>
+
+    <!-- Container principal do formulário de login do administrador -->
+    <div id="login" class="container">
+        <!-- Título do sistema -->
+        <h1>Login Administrador</h1>
+        <!-- Subtítulo -->
+        <h2>Área restrita para administradores</h2>
+
+        <!-- Campo de usuário do administrador -->
+        <div class="form-group">
+            <label for="usuarioAdm">Usuário Administrador</label>
+            <input type="text" id="usuarioAdm" placeholder="Digite o usuário do administrador">
+        </div>
+
+        <!-- Campo de senha do administrador -->
+        <div class="form-group">
+            <label for="senhaAdm">Senha:</label>
+            <input type="password" id="senhaAdm" placeholder="Digite a senha do administrador">
+        </div>
+
+        <!-- Botão de login do administrador -->
+        <p>
+            <button onclick="validarLoginAdm()">Entrar como Administrador</button>
+        </p>
+
+        <!-- Mensagem de erro ou sucesso (oculta por padrão) -->
+        <p id="mensagem" class="mensagem hidden"></p>
+    </div>
+</body>
+</html>

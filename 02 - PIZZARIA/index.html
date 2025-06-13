@@ -8,6 +8,19 @@
     <title id="titulo" class="hidden">Projeto Pizzaria</title>
 </head>
 <body>
+    <!-- Container de "Bem-vindo" no canto superior esquerdo -->
+    <div id="container-bemvindo">
+        <p id="Bem-vindo"></p>
+    </div>
+    <!-- Container de botões no canto superior direito -->
+    <div id="container-user">
+        <button onclick="logarAdmin()" title="Entrar como Administrador">
+            <i class="fa-solid fa-user-shield"></i>
+        </button>
+        <button onclick="logarCliente()" title="Fazer novo Login">
+            <i class="fa-solid fa-right-to-bracket"></i>
+        </button>
+    </div>
     <div id="container">
        
         <h1 onclick="mostrarSecao('menu')">Pizza Souls</h1>
@@ -20,10 +33,6 @@
 
             <button onclick="mostrarSecao('cardapio')">
                 <i class="fa-solid fa-book-open"></i> Cardápio
-            </button>
-
-            <button onclick="mostrarSecao('loginAdm')">
-                <i class="fa-solid fa-user-lock"></i> Logar no modo Adm
             </button>
  
             <button onclick="mostrarSecao('alterar')">
@@ -120,20 +129,6 @@
         </div>
      </div>
 
-
-      <!-- Seção de Login do Adm -->
-       <div id="loginAdm" class="hidden">
-        <div class="container-interno">
-            <h2>Você está na seção de login</h2>
-            <label>Qual seu Usuário: </label>
-            <input type="text" id="userAdm">
-            <label>Senha: </label>
-            <input type="password" id="password">
-            <button onclick="logar()">Logar</button>
-            <p id="resultadoLogin"></p>
-        </div>
-       </div>
-
        <!-- Seção de alterar Pizza -->
         <div id="alterar" class="hidden">
             <div class="container-interno">
@@ -141,6 +136,7 @@
                 <label>Qual pizza gostaria de Alterar: </label>
                 <input type="text" id="busca-alterar" placeholder="Buscar por título" oninput="buscarPizzaAlteracao()">
                 <div id="form-alterar" class="hidden">
+                    <p id="resultadoPizzaAlterar"></p>
                     <div class="form-group">
                         <label for="new-name">Novo nome:</label>
                         <input type="text" id="new-name">
@@ -209,17 +205,18 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Cliente </th>
-                            <th>Pizza: </th>
-                            <th>Preço: </th>
+                            <th>Cliente</th>
+                            <th>Pizza</th>
+                            <th>Quantidade</th>
+                            <th>Preço Unitário</th>
+                            <th>Total</th>
                         </tr>
                     </thead>
-                </table>
-                <tbody>
-                    <tr id="relatorio">
+                    <!-- Corpo da tabela onde os pedidos serão exibidos dinamicamente -->
+                    <tbody id="relatorio">
                         <!-- Os pedidos serão exibidos aqui -->
-                    </tr>
-                </tbody>
+                    </tbody>
+                </table>
             </div>
          </div>
 

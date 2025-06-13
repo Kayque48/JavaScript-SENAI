@@ -4,40 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
-    <!-- Importa o CSS de login -->
+    <!-- Importa o CSS de cadastro -->
     <link rel="stylesheet" href="cadastro.css">
 </head>
 <body>
     <!-- Importa o JavaScript principal -->
     <script src="pizzaria.js"></script>
+
+    <!-- Botão para fechar a aba -->
+    <div id="fechar" class="container-fechar">
+        <button onclick="fecharWeb()" title="Fechar">X</button>
+    </div>
+
     <!-- Container principal do formulário de Cadastro -->
     <div id="cadastro" class="container">
         <!-- Título do sistema -->
-        <h1>Bem-vindo a Pizza Souls </h1>
+        <h1>Bem-vindo a Pizza Souls</h1>
         <!-- Subtítulo -->
         <h2>Primeiro Acesso? Realize o cadastro para continuar</h2>
+
         <!-- Campo de usuário -->
         <div class="form-group">
             <label for="cadastroUsuario">Usuário: </label>
             <input type="text" id="cadastroUsuario" placeholder="Definir seu nome de usuário">
         </div>
+
         <!-- Campo de E-mail -->
         <div class="form-group">
-            <label for="CadastroEmail">Email: </label>
+            <label for="cadastroEmail">Email: </label>
             <input type="email" id="cadastroEmail" placeholder="Inserir seu email">
         </div>
+
         <!-- Campo de telefone -->
         <div class="form-group">
-            <label for="CadastroTelefone">Telefone: </label>
+            <label for="cadastroTelefone">Telefone: </label>
             <input type="text" id="cadastroTelefone" placeholder="Inserir seu telefone">
         </div>
+
         <!-- Campo de senha -->
         <div class="form-group">
-            <label for="senha">Senha:</label>
+            <label for="cadastroSenha">Senha:</label>
             <input type="password" id="cadastroSenha" placeholder="Digite sua senha">
         </div>
-        <!-- Botão de login -->
-        <p><button onclick="validarCadastro()">Cadastrar</button></p>
+
+        <!-- Botão de cadastro -->
+        <p>
+            <button onclick="validarCadastro()">Cadastrar</button>
+            <p>Já é usuário?</p>
+            <button onclick="logarCliente()">Logar</button>
+        </p>
+
         <!-- Mensagem de erro ou sucesso (oculta por padrão) -->
         <p id="mensagem" class="mensagem hidden"></p>
     </div>

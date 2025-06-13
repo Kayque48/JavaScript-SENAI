@@ -448,3 +448,163 @@ footer {
     border-color: #ff8800;
     transform: translateY(-2px) scale(1.04);
 }
+
+/* Estilo especial para o container-user (login/admin) */
+/* Container de botões no canto superior direito, fundo 100% transparente */
+#container-user {
+    position: absolute;
+    top: 18px;
+    right: 24px;
+    display: flex;
+    gap: 18px;
+    background: transparent;
+    z-index: 999;
+    box-shadow: none;
+    padding: 0;
+}
+
+/* Botões com fundo branco, borda e detalhes vermelhos */
+#container-user button {
+    background: #fff;
+    color: #d7263d;
+    border: 2px solid #d7263d;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(215,38,61,0.10);
+    cursor: pointer;
+    transition: 
+        background 0.2s, 
+        color 0.2s, 
+        border-color 0.2s, 
+        transform 0.2s, 
+        box-shadow 0.2s;
+    outline: none;
+}
+
+#container-user button:hover {
+    background: #d7263d;
+    color: #fff;
+    border-color: #a81d2b;
+    transform: scale(1.12) translateY(-2px);
+    box-shadow: 0 4px 18px rgba(215,38,61,0.18);
+}
+
+#container-user button i {
+    pointer-events: none;
+}
+
+/* Bem-vindo no canto superior esquerdo */
+#container-bemvindo {
+    position: absolute;
+    top: 18px;
+    left: 24px;
+    z-index: 999;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+}
+
+#container-bemvindo #Bem-vindo {
+    color: #d7263d !important;
+    font-size: 1.15rem;
+    font-weight: bold;
+    margin: 0;
+    padding: 0 10px;
+    letter-spacing: 1px;
+    background: #fff;
+    border-radius: 12px;
+    border: 2px solid #d7263d;
+    display: inline-block;
+    box-shadow: 0 2px 10px rgba(215,38,61,0.08);
+}
+
+@media (max-width: 700px) {
+    #container-bemvindo {
+        top: 8px;
+        left: 8px;
+    }
+    #container-bemvindo #Bem-vindo {
+        font-size: 1rem;
+        padding: 0 6px;
+        border-radius: 8px;
+    }
+}
+
+/* Responsivo */
+@media (max-width: 700px) {
+    #container-user {
+        top: 8px;
+        right: 8px;
+        gap: 10px;
+    }
+    #container-user button {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+}
+
+/* Botão fechar estilizado igual aos botões de login/admin */
+#fechar .container-fechar,
+.container-fechar {
+    position: absolute;
+    top: 18px;
+    right: 24px;
+    z-index: 1000;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+}
+
+#fechar button,
+.container-fechar button {
+    background: #fff;
+    color: #d7263d;
+    border: 2px solid #d7263d;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(215,38,61,0.10);
+    cursor: pointer;
+    transition: 
+        background 0.2s, 
+        color 0.2s, 
+        border-color 0.2s, 
+        transform 0.2s, 
+        box-shadow 0.2s;
+    outline: none;
+    position: relative;
+}
+
+#fechar button:hover,
+.container-fechar button:hover {
+    background: #d7263d;
+    color: #fff;
+    border-color: #a81d2b;
+    transform: scale(1.12) translateY(-2px);
+    box-shadow: 0 4px 18px rgba(215,38,61,0.18);
+}
+
+/* Responsivo */
+@media (max-width: 700px) {
+    #fechar .container-fechar,
+    .container-fechar {
+        top: 8px;
+        right: 8px;
+    }
+    #fechar button,
+    .container-fechar button {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+}
